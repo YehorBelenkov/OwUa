@@ -1,0 +1,21 @@
+<body class="login_body">
+    <div class="logo_reg_display_container">
+        <img class="logo_img" src="assets/images/logo.png" alt="OwUa Logo Image"/>
+    </div>
+    <div class="login_container">
+        <h1 class="login_h1">Реєстрація</h1>
+        <p class="txt_option_login">Реєстрація через електронну адресу</p>
+        <input id="email" class="login_input" placeholder="Введіть електронну пошту" type="text">
+        <div id="password" class="password_input_container">
+          <input id="password" class="login_input" [type]="showPassword ? 'text' : 'password'" placeholder="Введіть пароль">
+          <img class="icon_img" src="assets/icons/view_icon.png" alt="View password" (click)="togglePasswordVisibility('password')">
+      </div>
+      <div id="confirm_password" class="password_input_container">
+        <input id="confirm_password" class="login_input" [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Підтвердити пароль">
+        <img class="icon_img" src="assets/icons/view_icon.png" alt="View password" (click)="togglePasswordVisibility('confirm_password')">
+    </div>
+       <div class="proceeding_container">
+            <button class="login_btn">Увійти</button>
+       </div>
+    </div>
+</body>

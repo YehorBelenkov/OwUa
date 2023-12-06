@@ -1,0 +1,71 @@
+.login_body{
+    width: 100%;
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top left, rgba(77, 75, 158, 0.5) 20%, black 75%) top left,
+              radial-gradient(circle at bottom right, rgba(77, 75, 158, 0.5) 20%, black 75%) bottom right;
+  background-size: 25% 50%;
+  background-repeat: no-repeat;
+  
+}
+.logo_reg_display_container{
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 12vw;
+    padding-top: 3vw;
+}
+.logo_img{
+    width: 10vw;
+}
+.login_container{
+    background: radial-gradient(circle at bottom left, rgba(77, 75, 158, 0.5) 10%, black 70%);
+    width: 35vw;
+    margin: 0 auto;
+    border-radius: 23px;
+    border: 1px solid gray;
+    margin-top: 3vw;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vw;
+    gap: 2vw;
+}
+.txt_option_login{
+    margin: 0;
+    padding: 0;
+    width: 92%;
+    text-align: center;
+    font-family: 'NoirPro', sans-serif;
+}
+.login_h1{
+    font-size: 40px;
+    font-weight: 500;
+    margin: 0;
+    margin-top: 4vw;
+    font-weight: 500;
+}
+.continue_btn{
+    padding: 1vw;
+    background-color: #5A58C9;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    width: 40%;
+    font-size: 16px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+.continue_btn:hover{
+    transform: scale(1.1);
+}
+.send_again_link{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 1;
+    cursor: pointer;
+}
+.no_link_p{
+    margin-top: 3vw;
+}

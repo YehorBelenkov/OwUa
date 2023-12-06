@@ -1,0 +1,110 @@
+.login_body{
+    width: 100%;
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top left, rgba(77, 75, 158, 0.5) 20%, black 75%) top left,
+              radial-gradient(circle at bottom right, rgba(77, 75, 158, 0.5) 20%, black 75%) bottom right;
+  background-size: 25% 50%;
+  background-repeat: no-repeat;
+}
+.logo_reg_display_container{
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 12vw;
+    padding-top: 3vw;
+}
+.logo_img{
+    width: 10vw;
+}
+.login_container{
+    background: radial-gradient(circle at bottom left, rgba(77, 75, 158, 0.5) 10%, black 70%);
+    width: 35vw;
+    margin: 0 auto;
+    border-radius: 23px;
+    border: 1px solid gray;
+    margin-top: 3vw;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vw;
+    gap: 2vw;
+}
+.login_container .login_h1, .txt_option_login{
+    margin: 0;
+    padding: 0;
+}
+.login_h1{
+    font-size: 40px;
+    font-weight: 500;
+}
+.login_input{
+    background-color: transparent;
+    border-radius: 20px;
+    border: 1px solid #5A58C9;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 1vw;
+    width: 70%;
+    color: white;
+    text-align: start;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.login_input::placeholder {
+    color: white;
+  }
+  .icon_img {
+    width: 1.5vw;
+    cursor: pointer;
+    position: absolute;
+    right: 1vw; /* Adjust the distance from the right side */
+    top: 50%; /* Vertically center the icon */
+    transform: translateY(-50%);
+    z-index: 1;
+}
+  .password_input_container{
+    position: relative;
+    width: 75%;
+    display: flex;
+    align-items: center;
+  }
+  .password_input_container .login_input{
+    width: 100%;
+  }
+  .proceeding_container{
+    display: flex;
+    gap: 3vw;
+    width: 70%;
+    align-items: center;
+    justify-content: end;
+  }
+  .login_btn{
+    width: 50%;
+    background-color: #5A58C9;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 1vw;
+    border-radius: 15px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+  }
+  .login_btn:hover{
+    transform: scale(1.1);
+  }
+  .goback_link{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    margin-top: 1vw;
+    margin-right: auto;
+  }
+  .goback_link:hover{
+    transform: scale(1.1);
+  }
