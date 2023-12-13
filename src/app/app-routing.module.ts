@@ -10,8 +10,10 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { CreatenewpasswordComponent } from './createnewpassword/createnewpassword.component';
 import { FinishedComponent } from './finished/finished.component';
 import { AppComponent } from './app.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 const routes: Routes = [
+  { path: 'Main', component: MainPageComponent },
   { path: 'forgot-password', component: ForgotpasswordComponent },
   { path: 'forgot-password/create-new-password', component: CreatenewpasswordComponent },
   { path: 'forgot-password/sent', component: FinishedComponent },

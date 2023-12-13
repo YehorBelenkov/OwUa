@@ -10,6 +10,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { FinishedComponent } from './finished/finished.component';
 import { CreatenewpasswordComponent } from './createnewpassword/createnewpassword.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreatenewpasswordComponent } from './createnewpassword/createnewpasswor
     SignInComponent,
     ForgotpasswordComponent,
     FinishedComponent,
-    CreatenewpasswordComponent
+    CreatenewpasswordComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
