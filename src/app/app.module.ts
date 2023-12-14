@@ -12,6 +12,10 @@ import { FinishedComponent } from './finished/finished.component';
 import { CreatenewpasswordComponent } from './createnewpassword/createnewpassword.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +30,9 @@ import { MainPageComponent } from './main-page/main-page.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
