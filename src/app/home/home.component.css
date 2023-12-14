@@ -83,8 +83,9 @@
     margin-left: 2rem;
 }
 .profile_img{
-    width: 5vw;
+    width: 3vw;
     cursor: pointer;
+    border-radius: 50px;
 }
 .content_container {
     display: flex;
@@ -202,5 +203,7 @@
   .profile_container_btn{
     display: flex;
     margin-top: auto;
+    margin-bottom: 1vw;
     align-items: center;
+    gap: 0.5vw;
   }

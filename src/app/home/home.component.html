@@ -1,13 +1,3 @@
-<!-- <h1>Home.component.html page</h1>
-<p>Link:</p>
-<div class="listing_links">
-    <a href="Login">login</a>
-    <a href="Login/SignIn">sign-in</a>
-    <a href="Register">register</a>
-    <a href="forgot-password">forgot password</a>
-    <a href="forgot-password/sent">sent forgot password</a>
-    <a href="forgot-password/create-new-password">create new password</a>
-</div> -->
 <div class="body_container">
     <div class="make_fixed">
         <div class="menu_container" (mouseenter)="expandMenu()" (mouseleave)="resetMenu()">
@@ -78,11 +68,11 @@
                     <span class="icon_text">Сигнал адмінам</span>
                 </div>
             </div>
-            <div class="profile_container_btn">
-                <img class="profile_img" src="assets/images/profileImg.png" alt="Profile img"/>
+            <div *ngIf="user" class="profile_container_btn">
+                <img class="profile_img" [src]="user.photoURL" alt="Profile img"/>
                 <div class="icon_text">
-                    <h4 class="user_credentials_h4">username</h4>
-                    <p class="user_credentials_p">@username</p>
+                    <h4 class="user_credentials_h4">{{ user.email }}</h4>
+                    <p class="user_credentials_p">&#64;username</p>
                 </div>
             </div>
         </div>

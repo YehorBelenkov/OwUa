@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  user: any;
+  constructor(private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+  
+    // Check if navigation is not null and extras.state is defined
+    if (navigation && navigation.extras && navigation.extras.state) {
+      this.user = {
+        email: navigation.extras.state['userEmail'],
+        photoURL: navigation.extras.state['userPfp']
+      };
+    } else {
+      // Handle the case when there is no user data
+    }
+  }
+
   menuLogoSrc = 'assets/images/LogoImg.png';
 
   expandedIcons: Map<string, boolean> = new Map<string, boolean>();

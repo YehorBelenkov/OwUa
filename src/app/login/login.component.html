@@ -5,7 +5,7 @@
     <div class="login_container">
         <h1 class="login_h1">Вхід</h1>
         <p class="txt_option_login">Оберіть варіант входу</p>
-        <button class="login_btn"><img src="assets/images/logo_google.png" alt="Google Logo Image"/>Увійти через Google</button>
+        <button class="login_btn" (click)="googleSignIn()"><img src="assets/images/logo_google.png" alt="Google Logo Image"/>Увійти через Google</button>
         <button class="login_btn" (click)="navigateToSignIn()">
             <img src="assets/images/logo_mail.png" alt="Mail Logo Image"/>Вхід з електронною адресою
           </button>
