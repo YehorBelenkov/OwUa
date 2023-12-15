@@ -1,21 +1,21 @@
 <body class="login_body">
-    <div class="logo_reg_display_container">
-        <img class="logo_img" src="assets/images/logo.png" alt="OwUa Logo Image"/>
-    </div>
-    <div class="login_container">
-        <h1 class="login_h1">Вхід</h1>
-        <p class="txt_option_login">Введіть дані для входу</p>
-        <input id="email" class="login_input" placeholder="Введіть електронну пошту" type="text">
-        <div class="password_input_container">
-            <input id="password" class="login_input" [type]="showPassword ? 'text' : 'password'" placeholder="Введіть пароль">
-            <img class="icon_img" src="assets/icons/view_icon.png" alt="View password" (click)="togglePasswordVisibility()">
-          </div>
-       <div class="proceeding_container"> 
-            <a href="/forgot-password" class="forgot_password">Забули пароль?</a>
-            <button class="login_btn">Увійти</button>
-       </div>
-       <a class="goback_link" (click)="goBack()">
-        <img src="assets/icons/back_icon.png" alt="Go Back Icon Image"/>Повернутися
+  <div class="logo_reg_display_container">
+      <img class="logo_img" src="assets/images/logo.png" alt="OwUa Logo Image"/>
+  </div>
+  <div class="login_container">
+      <h1 class="login_h1">Вхід</h1>
+      <p class="txt_option_login">Введіть дані для входу</p>
+      <input id="email" class="login_input" placeholder="Введіть електронну пошту" type="text" [(ngModel)]="email">
+      <div class="password_input_container">
+          <input id="password" class="login_input" [type]="showPassword ? 'text' : 'password'" placeholder="Введіть пароль" [(ngModel)]="password">
+          <img class="icon_img" src="assets/icons/view_icon.png" alt="View password" (click)="togglePasswordVisibility()">
+      </div>
+      <div class="proceeding_container"> 
+          <a href="/forgot-password" class="forgot_password">Забули пароль?</a>
+          <button class="login_btn" (click)="login()">Увійти</button>
+      </div>
+      <a class="goback_link" (click)="goBack()">
+          <img src="assets/icons/back_icon.png" alt="Go Back Icon Image"/>Повернутися
       </a>
-    </div>
+  </div>
 </body>

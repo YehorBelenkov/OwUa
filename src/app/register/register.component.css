@@ -81,7 +81,7 @@
     align-items: center;
     justify-content: end;
   }
-  .login_btn{
+  .register_btn{
     width: 50%;
     background-color: #5A58C9;
     border: none;
@@ -93,7 +93,7 @@
     cursor: pointer;
     transition-duration: 0.2s;
   }
-  .login_btn:hover{
+  .register_btn:hover{
     transform: scale(1.1);
   }
   .goback_link{

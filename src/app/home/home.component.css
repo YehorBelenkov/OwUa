@@ -37,6 +37,7 @@
   }
 .logo_closed_menu{
     width: 2.5vw;
+    margin: 0 auto;
     margin-top: 2vw;
 
 }
@@ -67,7 +68,7 @@
     display: none;
 }
 .icon_text {
-    font-size: 14px;
+    font-size: 1vw;
     color: white;
     margin-top: 4px;
     display: none;
@@ -132,6 +133,7 @@
     padding: 0.3rem 1rem 0.3rem 1rem;
     cursor: pointer;
     transition-duration: 0.2s;
+    font-size: 1vw;
   }
   .category_btn:hover{
     background-color: #5A58C9;

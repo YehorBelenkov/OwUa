@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+// import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +8,20 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   user: any;
-  constructor(private router: Router) {
-    const navigation = this.router.getCurrentNavigation();
+  // constructor(private router: Router) {
+  //   const navigation = this.router.getCurrentNavigation();
   
-    // Check if navigation is not null and extras.state is defined
-    if (navigation && navigation.extras && navigation.extras.state) {
-      this.user = {
-        email: navigation.extras.state['userEmail'],
-        photoURL: navigation.extras.state['userPfp']
-      };
-    } else {
-      // Handle the case when there is no user data
-    }
-  }
+  //   // Check if navigation is not null and extras.state is defined
+  //   if (navigation && navigation.extras && navigation.extras.state) {
+  //     this.user = {
+  //       email: navigation.extras.state['userEmail'],
+  //       photoURL: navigation.extras.state['userPfp'],
+  //       username: navigation.extras.state['username']
+  //     };
+  //   } else {
+  //     // Handle the case when there is no user data
+  //   }
+  // }
 
   menuLogoSrc = 'assets/images/LogoImg.png';
 
@@ -34,6 +35,15 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
+    //store user data to display after
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      // Parse the JSON string to get the user object
+      this.user = JSON.parse(storedUser);
+      console.log(this.user);
+    } else {
+      // Handle the case when there is no user data
+    }
     // Add event listener to close expanded icons on menu mouseleave
     const menuContainer = document.querySelector('.menu_container') as HTMLElement;
     if (menuContainer) {
@@ -50,7 +60,7 @@ export class HomeComponent implements OnInit {
     // Change width to 20vw
     const menuContainer = document.querySelector('.menu_container') as HTMLElement;
     if (menuContainer) {
-      menuContainer.setAttribute('style', 'width: 20vw');
+      menuContainer.setAttribute('style', 'width: 20vw; justify-content: left;');
     }
   
     // Change logo image source and set its width to 10vw

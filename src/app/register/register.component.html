@@ -5,17 +5,14 @@
     <div class="login_container"> 
         <h1 class="login_h1">Реєстрація</h1>
         <p class="txt_option_login">Реєстрація через електронну адресу</p>
-        <input id="email" class="login_input" placeholder="Введіть електронну пошту" type="text">
+        <input id="email" class="login_input" placeholder="Введіть електронну пошту" type="text" [(ngModel)]="userEmail">
+        <input id="username" class="login_input" placeholder="Введіть Username" type="text" [(ngModel)]="userName">
         <div id="password" class="password_input_container">
-          <input id="password" class="login_input" [type]="showPassword ? 'text' : 'password'" placeholder="Введіть пароль">
+          <input id="password" class="login_input" [type]="showPassword ? 'text' : 'password'" placeholder="Введіть пароль" [(ngModel)]="password">
           <img class="icon_img" src="assets/icons/view_icon.png" alt="View password" (click)="togglePasswordVisibility('password')">
       </div>
-      <div id="confirm_password" class="password_input_container">
-        <input id="confirm_password" class="login_input" [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Підтвердити пароль">
-        <img class="icon_img" src="assets/icons/view_icon.png" alt="View password" (click)="togglePasswordVisibility('confirm_password')">
-    </div>
-       <div class="proceeding_container">
-            <button class="login_btn">Увійти</button>
-       </div>
+      <div class="proceeding_container">
+        <button class="register_btn" (click)="register()">Увійти</button>
+      </div>
     </div>
 </body>
