@@ -13,6 +13,7 @@ import { FinishedComponent } from './finished/finished.component';
 import { CreatenewpasswordComponent } from './createnewpassword/createnewpassword.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { AuthService } from './auth.service';
+import { MostLikedComponent } from './most-liked/most-liked.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     ForgotpasswordComponent,
     FinishedComponent,
     CreatenewpasswordComponent,
-    MainPageComponent
+    MainPageComponent,
+    MostLikedComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,114 @@
+  <div class="body_container">
+    <div class="top_menu_and_search_container">
+        <div class="menu_container">
+            <img class="logo_img" src="assets/images/LogoImg.png" alt="Logo Img">
+        </div>
+        <div class="search_container">
+            <div class="input_container">
+                <input class="search_input" placeholder="Введіть запит" type="text">
+                <img class="search_icon" src="assets/icons/search_icon.png" alt="Search icon"/>
+            </div>
+        </div>
+    </div>
+    <div class="video_container">
+        <iframe class="video" src="https://www.youtube.com/embed/5986IgwaVKE" frameborder="0" allowfullscreen></iframe>
+        
+    </div>
+    <div class="bottom_container">
+        <div class="comment_section_container">
+            <div class="content_creator_info_container">
+                <div class="creator_info_container">
+                    <img class="creator_profile" src="assets/images/profileImg.png" alt=" Creator profile">
+                    <div class="information_container">
+                        <h2 class="creator_title">{{ video.title }}</h2>
+                        <p class="creator_name">Fain</p>
+                        <p class="video_views_info">2,8 млн переглядiв 3 роки тому </p>
+                        <!-- <p>{{ video.description }}</p> -->
+                    </div>
+                </div>
+                <div class="buttons_section_container">
+                    <button class="follow_btn">Підписатись </button>
+                    <div class="interection_btn_container">
+                        <div class="like_displike_container">
+                            <div class="like_container">
+                                <button class="like_btn"><img class="like_img" src="assets/icons/like_icon.png" alt="Like Button"></button>
+                                <div class="l_and_d_container">
+                                    <p class="like_status">12 тис</p>
+                                </div>
+                            </div>
+                            <div class="dislike_container">
+                                <button class="dislike_btn"><img class="dislike_img" src="assets/icons/like_icon.png" alt="Dislike Button"></button>
+                                <div class="l_and_d_container">
+                                    <p class="dislike_status">44 тис</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="share_btn"><img src="assets/icons/share_icon.png" alt="Share Button"></button>
+                        <button class="interection_vid_btn"><span class="three_dots">...</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="write_comment_container">
+                <img class="creator_profile_comment" src="assets/images/profileImg.png" alt=" Creator profile">
+                <div class="leave_a_comment_container">
+                    <input class="comment_input" type="text" value="Введіть коментар">
+                    <button class="leave_comment_btn">Залишити коментар</button>
+                </div>
+            </div>
+            <div class="comments_below_section">
+                <img class="comment_section_person" src="assets/images/profileImg.png" alt="comment_section_person">
+                <div class="comment_guy_container">
+                    <div class="comment_guy_time_data">
+                        <span class="commnent_guy_name">Someone</span>
+                        <span class="commnent_guy_name_msg_time">2 години тому</span>
+                    </div>
+                    <span class="guy_comment">blah blah blah blah blah blah blah blah blah blah blah blah blah blah</span>
+                    <div class="guy_comment_interaction_container">
+                        <img class="like_img_comment" src="assets/icons/like_icon.png" alt="Like Button">
+                        <img class="dislike_img_comment" src="assets/icons/like_icon.png" alt="Dislike Button">
+                        <button class="reply_comment_btn">Відповісти </button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="other_videos_section_container">
+            <p class="also_might_like_p">Також вам можуть сподобатись: </p>
+            <div class="recommended_video_container">
+                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
+                <div class="side_content_rec_vid_container">
+                    <h4 class="rec_title_vid">Recommended Video!</h4>
+                    <p class="rec_creator_name_vid">Creator Name</p>
+                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
+                </div>
+            </div>
+            <div class="recommended_video_container">
+                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
+                <div class="side_content_rec_vid_container">
+                    <h4 class="rec_title_vid">Recommended Video!</h4>
+                    <p class="rec_creator_name_vid">Creator Name</p>
+                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
+                </div>
+            </div>
+            <div class="recommended_video_container">
+                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
+                <div class="side_content_rec_vid_container">
+                    <h4 class="rec_title_vid">Recommended Video!</h4>
+                    <p class="rec_creator_name_vid">Creator Name</p>
+                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="custom-video-player">
+        <video #videoPlayer (timeupdate)="updateTime()">
+            <source src="{{ videoSource }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="time-display">
+            {{ currentTime }}
+        </div> 
+    </div> -->
+    
+  </div>
+  

@@ -11,6 +11,8 @@ import { CreatenewpasswordComponent } from './createnewpassword/createnewpasswor
 import { FinishedComponent } from './finished/finished.component';
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { VideoComponent } from './video/video.component';
+import { MostLikedComponent } from './most-liked/most-liked.component';
 
 const routes: Routes = [
   { path: 'Main', component: MainPageComponent },
@@ -20,8 +22,10 @@ const routes: Routes = [
   { path: 'Register', component: RegisterComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'Login/SignIn', component: SignInComponent },
+  { path: 'Liked', component: MostLikedComponent },
   { path: '', component: HomeComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'video/:id', component: VideoComponent },
 ];
 
 @NgModule({
