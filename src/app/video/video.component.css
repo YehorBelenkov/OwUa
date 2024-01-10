@@ -163,7 +163,6 @@
 
 .like_status,
 .dislike_status {
-    color: gray;
     font-size: 12px;
 }
   .share_btn, .interection_vid_btn{
@@ -197,9 +196,6 @@
     margin: 0;
     padding: 0;
   }
-  .creator_name, .video_views_info{
-    color: gray;
-  }
   .creator_profile{
     margin-top: -1vw;
   }
@@ -218,7 +214,6 @@
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #5A58C9;
-    color: gray;
     width: 100%;
   }
   .leave_comment_btn{
@@ -244,7 +239,8 @@
     display: flex;
     gap: 0.5vw;
   }
-  .commnent_guy_name_msg_time{
+  .commnent_guy_name_msg_time, .rec_creator_name_vid, .watch_content_rec_vid, .also_might_like_p, .comment_input, .creator_name, .video_views_info, .like_status,
+  .dislike_status{
     color: gray;
   }
   .guy_comment_interaction_container{
@@ -288,7 +284,6 @@
   }
 
   .also_might_like_p{
-    color: gray;
     margin: 0;
   }
   .recommended_video_container{
@@ -310,9 +305,6 @@
   .rec_title_vid, .rec_creator_name_vid, .watch_content_rec_vid{
     margin: 0;
     font-weight: 500;
-  }
-  .rec_creator_name_vid, .watch_content_rec_vid{
-    color: gray;
   }
   .watch_content_rec_vid{
     font-size: 12px;
