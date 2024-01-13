@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VideoService } from './video.service';
 // import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -7,7 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
   user: any;
+  videos: any[] = [];
+
+  constructor(private videoService: VideoService) {}
+
+  loadVideos(): void {
+    this.videoService.getAllVideos().subscribe(
+      (data) => {
+        this.videos = data; // assuming the response is an array of videos
+        console.log('Videos:', this.videos);
+      },
+      (error) => {
+        console.error('Error fetching videos:', error);
+      }
+    );
+  }
   // constructor(private router: Router) {
   //   const navigation = this.router.getCurrentNavigation();
   
@@ -35,6 +52,7 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
+    this.loadVideos();
     //store user data to display after
     const storedUser = localStorage.getItem('user');
     if (storedUser) {

@@ -15,6 +15,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AuthService } from './auth.service';
 import { MostLikedComponent } from './most-liked/most-liked.component';
 
+import { UploadVideoComponent } from './upload-video/upload-video.component';
+
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -28,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     FinishedComponent,
     CreatenewpasswordComponent,
     MainPageComponent,
-    MostLikedComponent
+    MostLikedComponent,
+    UploadVideoComponent
   ],
   imports: [
     BrowserModule,

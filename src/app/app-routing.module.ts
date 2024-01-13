@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { VideoComponent } from './video/video.component';
 import { MostLikedComponent } from './most-liked/most-liked.component';
+import { UploadVideoComponent } from './upload-video/upload-video.component';
 
 const routes: Routes = [
   { path: 'Main', component: MainPageComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'Login', component: LoginComponent },
   { path: 'Login/SignIn', component: SignInComponent },
   { path: 'Liked', component: MostLikedComponent },
+  { path: 'Upload', component: UploadVideoComponent },
   { path: '', component: HomeComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'video/:id', component: VideoComponent },
