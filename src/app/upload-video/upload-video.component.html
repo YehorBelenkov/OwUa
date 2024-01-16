@@ -1,4 +1,4 @@
-<form #videoForm="ngForm" (ngSubmit)="onSubmit()">
+<form #videoForm="ngForm" enctype='multipart/form-data' (ngSubmit)="onSubmit(videoForm)">
 
   <label for="title">Title:</label>
   <input type="text" id="title" name="title" [(ngModel)]="video.title" required>
