@@ -36,7 +36,7 @@ export class UploadVideoComponent {
 
     // Set up headers
     const headers = {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNvbSIsImlhdCI6MTcwNTQzNzg2MSwiZXhwIjoxNzA1NTI0MjYxfQ.-GyGkaZl6Ncm_Q-FY_5OM6sHljnPsrQy7RU4ono0j_E',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNvbSIsImlhdCI6MTcwNTY5Nzg3MywiZXhwIjoxNzA1Nzg0MjczfQ.D2UoCMJz8ECVDMjINqssbtEDRmkRba4QuQCHqzOyitc',
       
       // 'Content-Length': '<calculated when request is sent>',
       // 'Host': '<calculated when request is sent>',
