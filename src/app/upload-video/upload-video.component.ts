@@ -44,6 +44,7 @@ export class UploadVideoComponent {
       'Accept': '*/*',
       'Accept-Encoding': 'gzip, deflate, br',
       'Connection': 'keep-alive',
+      'Access-Control-Allow-Origin': '*',
       // Add other headers as needed
     };
   
