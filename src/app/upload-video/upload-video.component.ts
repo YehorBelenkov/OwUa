@@ -37,13 +37,13 @@ export class UploadVideoComponent {
     // Set up headers
     const headers = {
       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNvbSIsImlhdCI6MTcwNTQzNzg2MSwiZXhwIjoxNzA1NTI0MjYxfQ.-GyGkaZl6Ncm_Q-FY_5OM6sHljnPsrQy7RU4ono0j_E',
-      'Content-Type': 'multipart/form-data; boundary=<calculated when request is sent>',
-      'Content-Length': '<calculated when request is sent>',
-      'Host': '<calculated when request is sent>',
-      'User-Agent': '',
+      
+      // 'Content-Length': '<calculated when request is sent>',
+      // 'Host': '<calculated when request is sent>',
+      // 'User-Agent': '',
       'Accept': '*/*',
-      'Accept-Encoding': 'gzip, deflate, br',
-      'Connection': 'keep-alive',
+      // 'Accept-Encoding': 'gzip, deflate, br',
+      // 'Connection': 'keep-alive',
       'Access-Control-Allow-Origin': '*',
       // Add other headers as needed
     };
