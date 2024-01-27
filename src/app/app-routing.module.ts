@@ -14,6 +14,9 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { VideoComponent } from './video/video.component';
 import { MostLikedComponent } from './most-liked/most-liked.component';
 import { UploadVideoComponent } from './upload-video/upload-video.component';
+import { CommentsComponent } from './comments/comments.component';
+import { GetvideoComponent } from './getvideo/getvideo.component';
+import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
 
 const routes: Routes = [
   { path: 'Main', component: MainPageComponent },
@@ -28,6 +31,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'video/:id', component: VideoComponent },
+  { path: 'comment', component: CommentsComponent },
+  { path: 'getvideo', component: GetvideoComponent },
+  { path: 'watched', component: WatchedvideoComponent },
 ];
 
 @NgModule({

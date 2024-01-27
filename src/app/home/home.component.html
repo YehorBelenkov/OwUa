@@ -47,7 +47,7 @@
                         <span>Inbossik list</span>
                     </div>
                   </div>
-                <div class="icon_container ">
+                <div class="icon_container " (click)="navigateToLiked()">
                     <img class="icon hidden_icon" src="assets/icons/like_icon.png" alt="Menu Icon"/>
                     <span class="icon_text">Уподобані</span>
                 </div>
@@ -100,91 +100,32 @@
     
     <div class="content_container">
         <div class="input_container">
-            <input class="search_input" placeholder="Введіть запит" type="text">
+            <input class="search_input" placeholder="Введіть запит" type="text" [(ngModel)]="searchQuery" (input)="searchVideos()">
             <img class="search_icon" src="assets/icons/search_icon.png" alt="Search icon"/>
         </div>
         <div class="category_container">
-            <button class="category_btn">Усi</button>
-            <button class="category_btn">Мiкси</button>
-            <button class="category_btn">Iгри</button>
-            <button class="category_btn">Музика</button>
-            <button class="category_btn active_category_btn">смішні відео</button>
-            <button class="category_btn">Мультфільми</button>
-            <button class="category_btn ">Реп</button>
-            <button class="category_btn">Ви дивилися</button>
-            <button class="category_btn">Новинки для вас</button>
+            <button [id]="category.id" class="category_btn" 
+        [class.active_category_btn]="category.id === selectedCategory" 
+        *ngFor="let category of categories" 
+        (click)="selectCategory(category.id)">
+  {{ category.title }}
+</button>
         </div>
         <div class="videos_container">
-            <div class="video">
+            <ng-container *ngFor="let video of (filteredVideos.length > 0 ? filteredVideos : videos)">
+            <div [attr.data-content-type]="video.contentType" class="video" (click)="navigateToVideoDetails(video)">
                 <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
                 <div class="creator_content_container">
-                    <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
-                    <div class="video_information_container">
-                        <h3 class="video_title">Tokyo Ghoul OP [Unravel] ニメ</h3>
-                        <h4 class="video_creator_name">Ai Mori</h4>
-                        <p class="video_details">428 тис. переглядiв 1 рiк тому</p>
-                    </div>
+                  <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
+                  <div class="video_information_container">
+                    <h3 class="video_title">{{ video.title }}</h3>
+                    <h4 class="video_creator_name">Ai Mori</h4>
+                    <p class="video_details">{{ video.description }}</p>
+                  </div>
                 </div>
-            </div>
-            <div class="video">
-                <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="creator_content_container">
-                    <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
-                    <div class="video_information_container">
-                        <h3 class="video_title">Tokyo Ghoul OP [Unravel] ニメ</h3>
-                        <h4 class="video_creator_name">Ai Mori</h4>
-                        <p class="video_details">428 тис. переглядiв 1 рiк тому</p>
-                    </div>
-                </div>
-            </div>
-            <div class="video">
-                <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="creator_content_container">
-                    <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
-                    <div class="video_information_container">
-                        <h3 class="video_title">Tokyo Ghoul OP [Unravel] ニメ</h3>
-                        <h4 class="video_creator_name">Ai Mori</h4>
-                        <p class="video_details">428 тис. переглядiв 1 рiк тому</p>
-                    </div>
-                </div>
-            </div>
-            <div class="video">
-                <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="creator_content_container">
-                    <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
-                    <div class="video_information_container">
-                        <h3 class="video_title">Tokyo Ghoul OP [Unravel] ニメ</h3>
-                        <h4 class="video_creator_name">Ai Mori</h4>
-                        <p class="video_details">428 тис. переглядiв 1 рiк тому</p>
-                    </div>
-                </div>
-            </div>
-            <div class="video">
-                <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="creator_content_container">
-                    <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
-                    <div class="video_information_container">
-                        <h3 class="video_title">Tokyo Ghoul OP [Unravel] ニメ</h3>
-                        <h4 class="video_creator_name">Ai Mori</h4>
-                        <p class="video_details">428 тис. переглядiв 1 рiк тому</p>
-                    </div>
-                </div>
-            </div><div class="video">
-                <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="creator_content_container">
-                    <img class="creator_pfp" src="https://hypixel.net/attachments/screenshot_2019-12-29-15-15-35-358-jpeg.1458269/" alt="Creator Profile Image">
-                    <div class="video_information_container">
-                        <h3 class="video_title">Tokyo Ghoul OP [Unravel] ニメ</h3>
-                        <h4 class="video_creator_name">Ai Mori</h4>
-                        <p class="video_details">428 тис. переглядiв 1 рiк тому</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+              </div>
+            </ng-container>
+          </div>
+        
     </div>
-    <div *ngFor="let video of videos">
-        <!-- Display video information as needed -->
-        <h3>{{ video.title }}</h3>
-        <p>{{ video.description }}</p>
-      </div>
 </div>

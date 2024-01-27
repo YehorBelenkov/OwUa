@@ -1,0 +1,18 @@
+<!-- Existing code for displaying categories -->
+<div *ngFor="let category of categories">
+    <p>ID: {{ category.id }}</p>
+    <p>Title: {{ category.title }}</p>
+  </div>
+  
+  <!-- New section for fetching category by ID -->
+  <div>
+    <label for="categoryIdInput">Enter Category ID:</label>
+    <input [(ngModel)]="categoryId" id="categoryIdInput" placeholder="Category ID" />
+    <button (click)="fetchCategoryById()">Fetch Category</button>
+  </div>
+  
+  <!-- Display category by ID -->
+  <div *ngIf="selectedCategory">
+    <p>ID: {{ selectedCategory.id }}</p>
+    <p>Title: {{ selectedCategory.title }}</p>
+  </div>

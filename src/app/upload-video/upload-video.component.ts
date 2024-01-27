@@ -22,7 +22,8 @@ export class UploadVideoComponent {
 
   onSubmit(videoForm: NgForm): void {
     // Handle any additional logic here
-    
+
+    const serverhost = "http://10.0.0.151:8085";
     const formData = new FormData();
     formData.append('title', this.video.title);
     formData.append('description', this.video.description);
@@ -36,7 +37,7 @@ export class UploadVideoComponent {
 
     // Set up headers
     const headers = {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNvbSIsImlhdCI6MTcwNTY5Nzg3MywiZXhwIjoxNzA1Nzg0MjczfQ.D2UoCMJz8ECVDMjINqssbtEDRmkRba4QuQCHqzOyitc',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNvbSIsImlhdCI6MTcwNjI3MzIyNywiZXhwIjoxNzA2MzU5NjI3fQ.J3jrtylz4Ab0Ygafaoek9RoIhe2f0h7rpePvWWlGxTg',
       
       // 'Content-Length': '<calculated when request is sent>',
       // 'Host': '<calculated when request is sent>',

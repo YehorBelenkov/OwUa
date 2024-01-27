@@ -14,10 +14,19 @@ import { CreatenewpasswordComponent } from './createnewpassword/createnewpasswor
 import { MainPageComponent } from './main-page/main-page.component';
 import { AuthService } from './auth.service';
 import { MostLikedComponent } from './most-liked/most-liked.component';
+import { CommentsComponent } from './comments/comments.component';
+import { GetvideoComponent } from './getvideo/getvideo.component';
+import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
+import { CommonModule } from '@angular/common';
+import { VideoComponent } from './video/video.component';
+
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { UploadVideoComponent } from './upload-video/upload-video.component';
 
 import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -31,15 +40,19 @@ import { HttpClientModule } from '@angular/common/http';
     CreatenewpasswordComponent,
     MainPageComponent,
     MostLikedComponent,
-    UploadVideoComponent
+    UploadVideoComponent,
+    CommentsComponent,
+    GetvideoComponent,
+    VideoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule, // Add this line
+    CommonModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, CookieService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

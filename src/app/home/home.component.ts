@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoService } from './video.service';
-// import { Router, NavigationExtras } from '@angular/router';
+import axios from 'axios';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +13,13 @@ export class HomeComponent implements OnInit {
   
   user: any;
   videos: any[] = [];
+  categories: any[] = [];
+  filteredVideos: any[] = [];
+  selectedCategory: string | null = null;
+  searchQuery: string = '';
 
-  constructor(private videoService: VideoService) {}
+  constructor(private videoService: VideoService, private cookieService: CookieService, private router: Router) {}
+  
 
   loadVideos(): void {
     this.videoService.getAllVideos().subscribe(
@@ -25,20 +32,6 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  // constructor(private router: Router) {
-  //   const navigation = this.router.getCurrentNavigation();
-  
-  //   // Check if navigation is not null and extras.state is defined
-  //   if (navigation && navigation.extras && navigation.extras.state) {
-  //     this.user = {
-  //       email: navigation.extras.state['userEmail'],
-  //       photoURL: navigation.extras.state['userPfp'],
-  //       username: navigation.extras.state['username']
-  //     };
-  //   } else {
-  //     // Handle the case when there is no user data
-  //   }
-  // }
 
   menuLogoSrc = 'assets/images/LogoImg.png';
 
@@ -72,8 +65,39 @@ export class HomeComponent implements OnInit {
         });
       });
     }
-  }
 
+    const bearerToken = this.cookieService.get('refreshToken');
+    console.log(bearerToken);
+
+    // Set up headers
+    const headers = {
+      'Authorization': `Bearer ${bearerToken}`,
+      'Accept': '*/*',
+      'Access-Control-Allow-Origin': '*',
+      // Add other headers as needed
+    };
+
+    // Make Axios GET request to fetch video data
+    axios.get('http://10.0.0.151:8085/video/all', { headers })
+    .then(response => {
+      this.videos = response.data;
+      console.log('Video data:', this.videos);
+    })
+    .catch(error => {
+      console.error('Error fetching video data:', error);
+    });
+
+    axios.get('http://10.0.0.151:8085/category/all-category', { headers })
+      .then(response => {
+        this.categories = response.data;
+        console.log(this.categories);
+      })
+      .catch(error => {
+        console.error('Error fetching categories:', error);
+      });
+
+  }
+  
   expandMenu() {
     // Change width to 20vw
     const menuContainer = document.querySelector('.menu_container') as HTMLElement;
@@ -147,4 +171,56 @@ export class HomeComponent implements OnInit {
   toggleIcon(iconName: string): void {
     this.expandedIcons.set(iconName, !this.expandedIcons.get(iconName));
   }
+
+  //Filter videos to display!
+  selectCategory(categoryId: string) {
+    console.log('Category clicked:', categoryId);
+  
+    // Toggle active class
+    if (this.selectedCategory === categoryId) {
+      // If the same category is clicked twice, empty the filter
+      this.selectedCategory = null;
+    } else {
+      this.selectedCategory = categoryId;
+    }
+  
+    this.filterVideos(); // Ensure this method is being called
+  }
+
+// Add this method
+filterVideos() {
+  if (this.selectedCategory) {
+      this.filteredVideos = this.videos.filter(video => video.contentType == this.selectedCategory);
+  } else {
+      this.filteredVideos = this.videos;
+  }
+}
+// Add the searchVideos method
+searchVideos() {
+  // If the search query is not empty
+  if (this.searchQuery.trim() !== '') {
+    // Filter videos based on the search query and selected category
+    this.filteredVideos = this.videos.filter(video =>
+      (video.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      video.description.toLowerCase().includes(this.searchQuery.toLowerCase())) &&
+      (!this.selectedCategory || video.contentType === this.selectedCategory)
+    );
+  } else {
+    // If the search query is empty
+    if (this.selectedCategory) {
+      // If a category is selected, filter videos based on the category
+      this.filteredVideos = this.videos.filter(video => video.contentType === this.selectedCategory);
+    } else {
+      // If no search query and no category selected, display all videos
+      this.filteredVideos = this.videos;
+    }
+  }
+}
+//routing to another video
+navigateToVideoDetails(video: any): void {
+  this.router.navigate(['/video', video.id]);
+}
+navigateToLiked() {
+  this.router.navigate(['/Liked']);
+}
 }

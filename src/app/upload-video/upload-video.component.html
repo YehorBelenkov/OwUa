@@ -1,5 +1,6 @@
 <form #videoForm="ngForm" enctype='multipart/form-data' (ngSubmit)="onSubmit(videoForm)">
 
+  <h1>Upload Video</h1>
   <label for="title">Title:</label>
   <input type="text" id="title" name="title" [(ngModel)]="video.title" required>
 

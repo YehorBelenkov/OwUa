@@ -1,0 +1,9 @@
+<div *ngFor="let comment of comments">
+    <p>{{ comment.text }}</p>
+    <p>Video ID: {{ comment.video_id }}</p>
+  </div>
+  
+  <div>
+    <input [(ngModel)]="newCommentText" placeholder="Enter your comment" />
+    <button (click)="addComment()">Add Comment</button>
+  </div>
