@@ -1,15 +1,27 @@
-<form #videoForm="ngForm" enctype='multipart/form-data' (ngSubmit)="onSubmit(videoForm)">
-
-  <h1>Upload Video</h1>
-  <label for="title">Title:</label>
-  <input type="text" id="title" name="title" [(ngModel)]="video.title" required>
-
-  <label for="description">Description:</label>
-  <textarea id="description" name="description" [(ngModel)]="video.description" required></textarea>
-
-  <label for="file">Video File:</label>
-  <input type="file" id="file" name="file" (change)="onFileSelected($event)" accept="video/*" required>
-
-  <button type="submit" [disabled]="!videoForm.valid">Upload Video</button>
-
-</form>
+<div class="body_container">
+  <h1>Завантажте ваше відео</h1>
+  <form #videoForm="ngForm" enctype='multipart/form-data' (ngSubmit)="onSubmit(videoForm)">
+    <div class="fill_info_container">
+      <div>
+        <h1>Назва відео</h1>
+        <input class="inp" type="text" placeholder="|">
+      </div>
+      <div>
+        <h1>Опис відео</h1>
+        <textarea class="inp" placeholder="|"></textarea>
+      </div>
+    </div>
+    <!-- <h1>Upload Video</h1>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" [(ngModel)]="video.title" required>
+  
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" [(ngModel)]="video.description" required></textarea>
+  
+    <label for="file">Video File:</label>
+    <input type="file" id="file" name="file" (change)="onFileSelected($event)" accept="video/*" required>
+  
+    <button type="submit" [disabled]="!videoForm.valid">Upload Video</button> -->
+   
+  </form>
+</div>

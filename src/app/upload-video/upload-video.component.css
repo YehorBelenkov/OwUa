@@ -1,10 +1,15 @@
+.body_container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
 form {
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    margin: 50px auto;
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
   
   label {
@@ -42,6 +47,16 @@ form {
     background-color: #aaa;
     cursor: not-allowed;
   }
-  label, h1, input{
+  /* label, h1, input{
     color: black;
+  } */
+  .fill_info_container{
+    display: flex;
+    width: 100vw;
+  }
+  .inp{
+    border-radius: 10px;
+    border: 2px solid #5A58C9;
+    background-color: transparent;
+    color: white;
   }
