@@ -19,6 +19,8 @@ import { GetvideoComponent } from './getvideo/getvideo.component';
 import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
 import { CommonModule } from '@angular/common';
 import { VideoComponent } from './video/video.component';
+import { ChanelComponent } from './chanel/chanel.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 
 import { CookieService } from 'ngx-cookie-service';
@@ -44,12 +46,14 @@ import { HttpClientModule } from '@angular/common/http';
     CommentsComponent,
     GetvideoComponent,
     VideoComponent,
+    ChanelComponent,
+    SubscriptionsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, // Add this line
+    FormsModule, 
     CommonModule,
   ],
   providers: [AuthService, CookieService,],

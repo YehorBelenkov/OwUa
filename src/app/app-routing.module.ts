@@ -17,6 +17,8 @@ import { UploadVideoComponent } from './upload-video/upload-video.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GetvideoComponent } from './getvideo/getvideo.component';
 import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
+import { ChanelComponent } from './chanel/chanel.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 const routes: Routes = [
   { path: 'Main', component: MainPageComponent },
@@ -34,6 +36,9 @@ const routes: Routes = [
   { path: 'comment', component: CommentsComponent },
   { path: 'getvideo', component: GetvideoComponent },
   { path: 'watched', component: WatchedvideoComponent },
+  { path: 'Chanel', component: ChanelComponent },
+  { path: 'Subscriptions', component: SubscriptionsComponent },
+
 ];
 
 @NgModule({

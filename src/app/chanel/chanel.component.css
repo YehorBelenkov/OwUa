@@ -1,0 +1,149 @@
+.listing_links{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.body_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+    gap: 6vw;
+    background: linear-gradient(to bottom right, #040406 60%, #24234C);
+}
+.make_fixed{
+    width: 20vw;
+}
+.menu_container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 100vh;
+    background-color: #111222;
+    align-items: center;
+    transition-duration: 0.2s;
+    overflow-y: scroll; 
+  }
+  
+  .menu_container::-webkit-scrollbar {
+    width: 0.5rem; 
+  }
+  
+  .menu_container::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+  }
+  
+  .menu_container::-webkit-scrollbar-track {
+    background-color: transparent; 
+  }
+.logo_closed_menu{
+    width: 10.5vw;
+    margin: 0 auto;
+    margin-top: 2vw;
+
+}
+.more_icons_container {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin-top: 2vw;
+    gap: 0.3vw;
+}
+.hidden_icon{
+    display: none;
+    display: flex;
+}
+.icon_container {
+    display: flex;
+    align-items: center; /* Center icons vertically */
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 12px;
+    transition-duration: 0.2s;
+    padding: 1rem;
+}
+.icon_container:hover{
+    background-color: #5A58C9;
+}
+.hidden_icon{
+    display: none;
+}
+.icon_text {
+    font-size: 1vw;
+    color: white;
+    margin-top: 4px;
+    display: none;
+    align-items: center; /* Center text vertically */
+}
+.icon {
+    width: 1.5vw;
+}
+.arrow_icon{
+    width: 0.4vw;
+}
+.additional_icons{
+    margin-left: 2rem;
+}
+.profile_img{
+    width: 3vw;
+    cursor: pointer;
+    border-radius: 50px;
+}
+  .user_credentials_h4, .user_credentials_p{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+  }
+  .user_credentials_h4{
+    font-size: 18px;
+  }
+  .user_credentials_p{
+    font-size: 14px;
+    color: gray;
+  }
+  .profile_container_btn{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 1vw;
+    align-items: center;
+    gap: 0.5vw;
+  }
+
+
+  .creator_content_container{
+    width: 80vw;
+  }
+  .welcome_banner {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: url('src/assets/images/bgbanner.jpg') center/cover no-repeat;
+}
+
+.creator_logo{
+    width: 10vw;
+}
+.creator_info_contaier{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.creator_icons_contaier{
+    display: flex;
+    gap: 1rem;
+   right: 0.1rem;
+   position: absolute;
+}
+.vid_chanel_btn{
+    color: white;
+    background-color: #5A58C9;
+    border-radius: 10px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    font-size: 22px;
+    margin-left: 2rem;
+    cursor: pointer;
+}

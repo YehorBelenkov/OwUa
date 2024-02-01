@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-most-liked',
-  templateUrl: './most-liked.component.html',
-  styleUrls: ['./most-liked.component.css']
+  selector: 'app-subscriptions',
+  templateUrl: './subscriptions.component.html',
+  styleUrl: './subscriptions.component.css'
 })
-export class MostLikedComponent implements OnInit {
+export class SubscriptionsComponent {
   user: any;
   menuLogoSrc = 'assets/images/LogoImg.png';
   expandedIcons: Map<string, boolean> = new Map<string, boolean>();

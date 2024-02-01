@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-most-liked',
-  templateUrl: './most-liked.component.html',
-  styleUrls: ['./most-liked.component.css']
+  selector: 'app-chanel',
+  templateUrl: './chanel.component.html',
+  styleUrl: './chanel.component.css'
 })
-export class MostLikedComponent implements OnInit {
+export class ChanelComponent {
   user: any;
   menuLogoSrc = 'assets/images/LogoImg.png';
   expandedIcons: Map<string, boolean> = new Map<string, boolean>();
