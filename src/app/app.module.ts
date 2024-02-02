@@ -29,6 +29,8 @@ import { UploadVideoComponent } from './upload-video/upload-video.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule, 
     CommonModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
   ],
   providers: [AuthService, CookieService,],
   bootstrap: [AppComponent]

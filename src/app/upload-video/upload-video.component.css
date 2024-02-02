@@ -10,6 +10,7 @@ form {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    gap: 2rem;
   }
   
   label {
@@ -50,13 +51,49 @@ form {
   /* label, h1, input{
     color: black;
   } */
-  .fill_info_container{
+  .fill_info_container, .combobox_container{
     display: flex;
-    width: 100vw;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .fill_info_container div{
+    width: 25%;
   }
   .inp{
     border-radius: 10px;
     border: 2px solid #5A58C9;
     background-color: transparent;
     color: white;
+  }
+  .file_btn, .save_btn{
+    color: white;
+    background-color: #5A58C9;
+    width: 20vw;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .custom_select{
+    border: 2px solid #5A58C9;
+    background-color: transparent;
+    color: white;
+    padding: 1rem;
+    font-size: 22px;
+    width: 70%;
+  }
+  .custom_select option{
+    background-color: black;
+  }
+  .combo_container{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .s_con{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .save_btn{
+    margin: 0 auto;
   }
