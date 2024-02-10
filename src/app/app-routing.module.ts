@@ -19,6 +19,7 @@ import { GetvideoComponent } from './getvideo/getvideo.component';
 import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
 import { ChanelComponent } from './chanel/chanel.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { SubscribedComponent } from './subscribed/subscribed.component';
 
 const routes: Routes = [
   { path: 'Main', component: MainPageComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'watched', component: WatchedvideoComponent },
   { path: 'Chanel', component: ChanelComponent },
   { path: 'Subscriptions', component: SubscriptionsComponent },
+  { path: 'Subscribed', component: SubscribedComponent },
 
 ];
 

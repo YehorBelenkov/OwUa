@@ -1,4 +1,4 @@
-  <div class="body_container">
+<div class="body_container">
     <div class="top_menu_and_search_container">
         <div class="menu_container">
             <img class="logo_img" src="assets/images/LogoImg.png" alt="Logo Img">
@@ -11,35 +11,42 @@
         </div>
     </div>
     <div class="video_container">
-        <iframe class="video" src="https://www.youtube.com/embed/5986IgwaVKE" frameborder="0" allowfullscreen></iframe>
-        
+        <!-- <iframe class="video" src="https://www.youtube.com/embed/5986IgwaVKE" frameborder="0" allowfullscreen></iframe> -->
+        <ng-container *ngIf="video.path">
+            <video class="video" [src]="video.path" controls width="300" height="200"></video>
+          </ng-container>
     </div>
     <div class="bottom_container">
         <div class="comment_section_container">
             <div class="content_creator_info_container">
                 <div class="creator_info_container">
-                    <img class="creator_profile" src="assets/images/profileImg.png" alt=" Creator profile">
+                    <!-- <img class="creator_profile" src="assets/images/profileImg.png" alt=" Creator profile"> -->
+                    <img class="creator_profile" *ngIf="video" [src]="video.avatarBytes | safe" alt="User Avatar">
                     <div class="information_container" *ngIf="video">
                         <h2 class="creator_title">{{ video.title }} {{ video.description }}</h2>
-                        <p class="creator_name">Fain</p>
+                        <p class="creator_name">{{video.displayName}}</p>
                         <p class="video_views_info">2,8 млн переглядiв 3 роки тому </p>
                         
                     </div>
                 </div>
                 <div class="buttons_section_container">
-                    <button class="follow_btn">Підписатись </button>
+                    <button class="follow_btn" (click)="handleSubscribe()" [disabled]="SubscribeBtn.Disabled" [class.active]="SubscribeBtn.ActiveBtn">Підписатись</button>
                     <div class="interection_btn_container">
                         <div class="like_displike_container">
                             <div class="like_container">
-                                <button class="like_btn"><img class="like_img" src="assets/icons/like_icon.png" alt="Like Button"></button>
+                                <button class="like_btn" (click)="handleLikeDislike(1)" [disabled]="isButtonDisabled" [class.active]="likebtnClick">
+                                    <img class="like_img" src="assets/icons/like_icon.png" alt="Like Button">
+                                  </button>
                                 <div class="l_and_d_container">
-                                    <p class="like_status">12</p>
+                                    <p class="like_status" *ngIf="countLike">{{ countLike }}</p>
                                 </div>
                             </div>
                             <div class="dislike_container">
-                                <button class="dislike_btn"><img class="dislike_img" src="assets/icons/like_icon.png" alt="Dislike Button"></button>
+                                <button class="dislike_btn" (click)="handleLikeDislike(2)" [disabled]="isButtonDisabled" [class.active]="dislikebtnClick">
+                                    <img class="dislike_img" src="assets/icons/like_icon.png" alt="Dislike Button">
+                                  </button>
                                 <div class="l_and_d_container">
-                                    <p class="dislike_status">3</p>
+                                    <p class="dislike_status" *ngIf="countDislike">{{ countDislike }}</p>
                                 </div>
                             </div>
                         </div>
@@ -52,11 +59,11 @@
             </div>
             <div class="write_comment_container">
                 <ng-container *ngIf="user.photoUrl; else noPhoto">
-                    <img class="creator_profile_comment" [src]="user.photoUrl" alt="Profile img" />
+                    <img class="creator_profile" [src]="user.photoUrl" alt="Profile img" />
                   </ng-container>
                   <!-- If photoUrl is null, display alternative image -->
                   <ng-template #noPhoto>
-                    <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
+                    <img class="creator_profile" src="assets/images/unregisteredImg.png" alt="No User Found" />
                   </ng-template>
                 <div class="leave_a_comment_container">
                     <input class="comment_input" type="text" placeholder="Введіть коментар" [(ngModel)]="commentText"> 
@@ -65,7 +72,7 @@
             </div>
             <div class="allcommentsinsidehere" *ngFor="let comment of comments">
                 <div class="comments_below_section">
-                    <img class="comment_section_person" src="assets/images/unregisteredImg.png" alt="No User Found" /> 
+                    <img class="creator_profile" src="assets/images/unregisteredImg.png" alt="No User Found" /> 
                     <div class="comment_guy_container">
                         <div class="comment_guy_time_data">
                             <span class="commnent_guy_name">Someone</span>

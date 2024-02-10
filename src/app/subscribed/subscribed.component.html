@@ -1,0 +1,106 @@
+<div class="body_container">
+
+  <div class="make_fixed">
+    <div class="menu_container" (mouseenter)="expandMenu()">
+        <img class="logo_closed_menu" src="assets/images/logo.png" alt="OwUa Logo Image"/>
+        <div class="more_icons_container">
+            <div class="icon_container " (click)="navigateHome()">
+                <img class="icon" src="assets/icons/home_icon.png" alt="Home Icon"/> 
+                <span class="">Головна </span>
+            </div>
+            <div class="icon_container">
+                <img class="icon" src="assets/icons/videos_icon.png" alt="Videos Icon"/>
+                <span class="">Підписки</span>
+            </div>
+            <div class="icon_container"  (click)="toggleIcon('Categories')">
+                <img class="icon" src="assets/icons/category_icon.png" alt="Category Icon"/>
+                <span class="">
+                  Особистий кабінет <img class="arrow_icon" src="assets/icons/arrow_icon.png" alt="Arrow Icon"/>
+                </span>
+              </div>
+              <!-- Additional icons for Categories -->
+              <div *ngIf="expandedIcons.get('Categories')" class="additional_icons">
+                <div class="icon_container">
+                    <img class="icon" src="assets/icons/profile_icon.png" alt="Videos Icon"/>
+                    <span>Підписки</span>
+                </div>
+                <div class="icon_container">
+                    <img class="icon" src="assets/icons/history_icon.png" alt="Videos Icon"/>
+                    <span>Історія перегляду</span>
+                </div>
+              </div>
+            
+              <!-- Menu Icon with arrow -->
+              <div class="icon_container" (click)="toggleIcon('Menu')">
+                <img class="icon" src="assets/icons/menu_icon.png" alt="Menu Icon"/>
+                <span class="" >
+                  Плейлисти <img class="arrow_icon" src="assets/icons/arrow_icon.png" alt="Arrow Icon"/>
+                </span>
+              </div>
+              <!-- Additional icons for Menu -->
+              <div *ngIf="expandedIcons.get('Menu')" class="additional_icons">
+                <div class="icon_container">
+                    <img class="icon" src="assets/icons/playlist_icon.png" alt="Videos Icon"/>
+                    <span>Ai mini Каверы</span>
+                </div>
+                <div class="icon_container">
+                    <img class="icon" src="assets/icons/playlist_icon.png" alt="Videos Icon"/>
+                    <span>Inbossik list</span>
+                </div>
+              </div>
+            <div class="icon_container ">
+                <img class="icon " src="assets/icons/like_icon.png" alt="Menu Icon"/>
+                <span class="">Уподобані</span>
+            </div>
+            <div class="icon_container">
+                <img class="icon " src="assets/icons/share_icon.png" alt="Menu Icon"/>
+                <span class="">Керування підписками</span>
+            </div>
+            <div class="icon_container">
+                <img class="icon " src="assets/icons/settings_icon.png" alt="Menu Icon"/>
+                <span class="">Налаштування</span>
+            </div>
+            <div class="icon_container">
+                <img class="icon " src="assets/icons/warning_icon.png" alt="Menu Icon"/>
+                <span class="">Довідка</span>
+            </div>
+            <div class="icon_container">
+                <img class="icon " src="assets/icons/flag_icon.png" alt="Menu Icon"/>
+                <span class="">Сигнал адмінам</span>
+            </div>
+        </div>
+        <!-- If user exists, display user information -->
+        <div *ngIf="user; else noUser" class="profile_container_btn">
+            <!-- Check if photoUrl is not null -->
+            <ng-container *ngIf="user.photoUrl; else noPhoto">
+              <img class="profile_img" [src]="user.photoUrl" alt="Profile img" />
+            </ng-container>
+            <!-- If photoUrl is null, display alternative image -->
+            <ng-template #noPhoto>
+              <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
+            </ng-template>
+          
+            <div class="">
+              <h4 class="user_credentials_h4">{{ user.email }}</h4>
+              <p class="user_credentials_p">&#64;{{ user.displayName }}</p>
+            </div>
+          </div>
+  
+  <!-- Else, display a message or alternative content -->
+  <ng-template #noUser>
+  <div class="profile_container_btn">
+  <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found">
+  <div class="">
+    <h4 class="user_credentials_h4">No User Found</h4>
+    <a href="/Login">Login</a>
+  </div>
+  </div>
+  </ng-template>
+    </div>
+  </div>
+  <div class="allvids">
+  
+  </div>
+</div>
+
+   

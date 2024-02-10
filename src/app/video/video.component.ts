@@ -2,6 +2,8 @@ import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import axios from 'axios';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-video',
@@ -15,23 +17,37 @@ export class VideoComponent implements OnInit {
   user: any;
   commentText: string = '';
   comments: any[] = [];
+  countLike: number = 0;
+  countDislike: number = 0; 
+  isButtonDisabled = false;
+  likebtnClick = false;
+  dislikebtnClick = false
+
+  SubscribeBtn: any = {
+    ActiveBtn: false,
+    Disabled: false
+  };
 
   constructor(
     private cookieService: CookieService,
     private route: ActivatedRoute,
     private renderer: Renderer2,
     private el: ElementRef,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.videoName = params['id']; // Assuming the route parameter is named 'id'
+      console.log("Video name: " + this.videoName)
       this.fetchVideoBytes();
+      
     });
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       // Parse the JSON string to get the user object
       this.user = JSON.parse(storedUser);
+      console.log("User Data: ");
       console.log(this.user);
     } else {
       // Handle the case when there is no user data
@@ -39,78 +55,133 @@ export class VideoComponent implements OnInit {
   }
 
   // Fetch video bytes
-  fetchVideoBytes() {
+  async fetchVideoBytes() {
     const token = this.cookieService.get('refreshToken');
-
-    // Create FormData and set the "name" field
-    const formData = new FormData();
-    
-
-    axios
-      .get('http://localhost:8085/video/' + this.videoName, {
+  
+    try {
+      const response = await axios.get(`http://localhost:8085/video/${this.videoName}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Accept': '*/*',
-          // No need to set Content-Type for FormData, Axios will set it automatically
         },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          
-          this.video = response.data;
-
-          // console.log(this.video);
-          //add to name to then send another api request to get the bytes
-          formData.append('name', this.video.name);
-          this.getComments();
-        } else {
-          console.error('Unexpected response status:', response.status);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching video bytes:', error);
-        // Handle error, maybe set a default video or display an error message
       });
-
-    // axios
-    //   .post('http://localhost:8085/video/byteVideo', formData, {
-    //     headers: {
-    //       'Authorization': `Bearer ${token}`,
-    //       'Accept': '*/*',
-    //       // No need to set Content-Type for FormData, Axios will set it automatically
-    //     },
-    //     responseType: 'blob', // Specify the response type as blob
-    //   })
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       const videoBlob = new Blob([response.data], { type: 'video/mp4' });
-    //       this.videoBlobUrl = URL.createObjectURL(videoBlob);
-    //       this.appendVideoToContainer();
-    //       console.log(response.data);
-    //       console.log(this.videoBlobUrl);
-    //     } else {
-    //       console.error('Unexpected response status:', response.status);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error fetching video bytes:', error);
-    //     // Handle error, maybe set a default video or display an error message
-    //   });
+  
+      if (response.status === 200) {
+        this.video = response.data;
+        console.log("Video: ", this.video);
+  
+        await this.updateCounts(token); // Update counts after video data is fetched
+        this.getComments();
+      } else {
+        console.error('Unexpected response status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching video data:', error);
+      // Handle error, maybe set a default video or display an error message
+    }
+  }
+  async updateCounts(token: string): Promise<void> {
+    try {
+      this.countLike = await this.getCountLike(token);
+      this.countDislike = await this.getCountDislike(token);
+    } catch (error) {
+      console.error('Error updating counts:', error);
+      // Handle error as needed
+    }
+  }
+  //get like and dislike
+  async getCountDislike(token: string): Promise<number> {
+    try {
+      const response = await axios.get(`http://localhost:8085/grade/countdislike`, {
+        params: { videoId: this.video.id },
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': '*/*',
+        },
+        responseType: 'blob',
+      });
+  
+      return response?.status === 200 ? +(await response.data.text()) : 0;
+    } catch (error) {
+      console.error('Error fetching countLikes:', error);
+      return 0; // Return a default value or handle it as needed
+    }
   }
 
-  // Append the video to the video_container
-  appendVideoToContainer() {
-    // Check if videoBlobUrl is not null
-    if (this.videoBlobUrl) {
-      // Create a video element
-      const videoElement = this.renderer.createElement('video');
-      this.renderer.setAttribute(videoElement, 'src', this.videoBlobUrl);
-      this.renderer.setAttribute(videoElement, 'controls', 'true');
-
-      // Append the video element to the video_container
-      const videoContainer = this.el.nativeElement.querySelector('.video_container');
-      this.renderer.appendChild(videoContainer, videoElement);
+  async getCountLike(token: string): Promise<number> {
+    try {
+      const response = await axios.get(`http://localhost:8085/grade/countlike`, {
+        params: { videoId: this.video.id },
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': '*/*',
+        },
+        responseType: 'blob',
+      });
+  
+      return response?.status === 200 ? +(await response.data.text()) : 0;
+    } catch (error) {
+      console.error('Error fetching countLikes:', error);
+      return 0; // Return a default value or handle it as needed
     }
+  }
+  //Handle actions Like Dislike
+  handleLikeDislike(gradeId: number): void {
+    const videoId = this.video.id;
+    const token = this.cookieService.get('refreshToken');
+  
+    this.isButtonDisabled = true;
+    axios.get('http://localhost:8085/grade/like', {
+      params: { grade_id: gradeId, video_id: videoId },
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': '*/*',
+      }
+    })
+      .then(response => {
+        // Handle the response if needed
+        console.log('Successfully added like/dislike:', response);
+        if (gradeId === 1) {
+          this.likebtnClick = true;
+          this.getCountLike(token).then(count => {
+            this.countLike = count;
+          });
+        }
+        if (gradeId === 2) {
+          this.dislikebtnClick = true;
+          this.getCountDislike(token).then(count => {
+            this.countDislike = count;
+          });
+        }
+      })
+      .catch(error => {
+        // Handle the error, display an error message, etc.
+        console.error('Error adding like/dislike:', error);
+      });
+  }
+  //Subscribe to the creator of the video
+  handleSubscribe() {
+    const token = this.cookieService.get('refreshToken');
+    const formData = new FormData();
+    formData.append('target_user_id', this.video.userId.toString()); // Make sure userId is a string
+    console.log("USER FOLLOW: " + this.video.userId);
+
+    // this.SubscribeBtn.ActiveBtn = true;
+    this.SubscribeBtn.Disabled = true;
+    
+    axios.post('http://localhost:8085/subs/add-sub', formData, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+    .then(response => {
+      // Handle the response as needed
+      console.log('Subscription successful:', response.data);
+    })
+    .catch(error => {
+      // Handle errors
+      console.error('Error subscribing:', error);
+    });
   }
   //get all comments
   getComments() {

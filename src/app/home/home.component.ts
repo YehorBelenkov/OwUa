@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { VideoService } from './video.service';
 import axios from 'axios';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,25 +12,31 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   
   user: any;
-  videos: any[] = [];
+  videos: any[] = []; 
   categories: any[] = [];
   filteredVideos: any[] = [];
   selectedCategory: string | null = null;
   searchQuery: string = '';
 
-  constructor(private videoService: VideoService, private cookieService: CookieService, private router: Router) {}
+  constructor(
+      private videoService: VideoService,
+      private cookieService: CookieService,
+      private router: Router,
+      private renderer: Renderer2,
+      private el: ElementRef,
+    ) {}
   
 
   loadVideos(): void {
-    this.videoService.getAllVideos().subscribe(
-      (data) => {
-        this.videos = data; // assuming the response is an array of videos
-        console.log('Videos:', this.videos);
-      },
-      (error) => {
-        console.error('Error fetching videos:', error);
-      }
-    );
+    // this.videoService.getAllVideos().subscribe(
+    //   (data) => {
+    //     this.videos = data; // assuming the response is an array of videos
+    //     console.log('Videos:', this.videos);
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching videos:', error);
+    //   }
+    // );
   }
 
   menuLogoSrc = 'assets/images/LogoImg.png';
@@ -79,13 +85,16 @@ export class HomeComponent implements OnInit {
 
     // Make Axios GET request to fetch video data
     axios.get('http://10.0.0.151:8085/video/all', { headers })
-    .then(response => {
-      this.videos = response.data;
-      console.log('Video data:', this.videos);
-    })
-    .catch(error => {
-      console.error('Error fetching video data:', error);
-    });
+  .then(response => {
+    this.videos = response.data;
+    console.log('Video data:', this.videos);
+    
+    console.log("Video data:");
+    console.log(this.videos);
+  })
+  .catch(error => {
+    console.error('Error fetching video data:', error);
+  });
 
     axios.get('http://10.0.0.151:8085/category/all-category', { headers })
       .then(response => {
@@ -97,7 +106,6 @@ export class HomeComponent implements OnInit {
       });
 
   }
-  
   expandMenu() {
     // Change width to 20vw
     const menuContainer = document.querySelector('.menu_container') as HTMLElement;
@@ -223,4 +231,5 @@ navigateToVideoDetails(video: any): void {
 navigateToLiked() {
   this.router.navigate(['/Liked']);
 }
+
 }

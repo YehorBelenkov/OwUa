@@ -68,7 +68,6 @@
 .bottom_container{
   width: 100vw;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: #0C0F14;
 }
@@ -87,6 +86,12 @@
   gap: 1rem;
   overflow-y: auto;
   padding-top: 1rem;
+}
+
+/* Hide scrollbar */
+.other_videos_section_container::-webkit-scrollbar {
+  width: 0; /* Set the width of the scrollbar to 0 */
+  background-color: transparent; /* Make the background color transparent */
 }
 .content_creator_info_container{
   display: flex;
@@ -134,7 +139,7 @@
   transition-duration: 0.2s;
   cursor: pointer;
 }
-.like_btn:hover, .dislike_btn:hover, .share_btn:hover, .interection_vid_btn:hover, .follow_btn:hover{
+.like_btn:hover, .dislike_btn:hover, .share_btn:hover, .interection_vid_btn:hover, .follow_btn:hover, .active{
   background-color: #5A58C9;
 }
 .dislike_btn{
@@ -202,7 +207,10 @@
   color: gray;
 }
 .creator_profile{
-  margin-top: -1vw;
+  border-radius: 50%;
+  width: 5vw;
+  height: 5vw;
+  margin-right: 1rem;
 }
 .write_comment_container{
   display: flex;
@@ -235,10 +243,12 @@
 }
 .comments_below_section{
   display: flex;
+  padding: 1rem;
+  align-items: center;
 }
 .creator_profile_comment{
   border-radius: 50px;
-  width: 3.5vw;
+  width: 3vw;
   padding: 1rem;
 }
 .comment_guy_container{
@@ -258,11 +268,6 @@
   display: flex;
   gap: 1vw;
   align-items: center;
-}
-.comment_section_person{
-  width: 4vw;
-  height: 4vw;
-  padding: 1rem;
 }
 .dislike_img_comment{
   transform: rotate(180deg);

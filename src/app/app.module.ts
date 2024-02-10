@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Add this line
+import { FormsModule } from '@angular/forms'; 
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,25 +16,27 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { FinishedComponent } from './finished/finished.component';
 import { CreatenewpasswordComponent } from './createnewpassword/createnewpassword.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { AuthService } from './auth.service';
 import { MostLikedComponent } from './most-liked/most-liked.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GetvideoComponent } from './getvideo/getvideo.component';
 import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
-import { CommonModule } from '@angular/common';
 import { VideoComponent } from './video/video.component';
 import { ChanelComponent } from './chanel/chanel.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
-
-
-import { CookieService } from 'ngx-cookie-service';
-
+import { SubscribedComponent } from './subscribed/subscribed.component';
 import { UploadVideoComponent } from './upload-video/upload-video.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from '../environments/environment';
 
-import { MatSelectModule } from '@angular/material/select';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CookieService } from 'ngx-cookie-service';
+import { SafePipe } from './safe.pipe';
+import { VideoPipe } from './video.pipe';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +56,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     VideoComponent,
     ChanelComponent,
     SubscriptionsComponent,
+    SubscribedComponent,
+    SafePipe,
+    VideoPipe
   ],
   imports: [
     BrowserModule,
@@ -59,8 +68,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     MatSelectModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig), // Initialize Firebase
+    AngularFireAuthModule, // Import the AngularFireAuthModule
+    AngularFireStorageModule, // Import the AngularFireStorageModule
+    AngularFirestoreModule, // Import the AngularFirestoreModule
+    AngularFireDatabaseModule // Import the AngularFireDatabaseModule
   ],
-  providers: [AuthService, CookieService,],
+  providers: [AuthService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

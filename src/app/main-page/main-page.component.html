@@ -1,1 +1,10 @@
-<p>main-page works!</p>
+<input type="file" accept=".mp4" (change)="chooseFile($event)">
+<button (click)="addDate()">Upload</button>
+
+<div class="progress-bar-container">
+  <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+</div>
+
+<div class="popup" *ngIf="uploadCompleted">
+  <h1> Upload is completed!</h1>
+</div>

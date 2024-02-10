@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-chanel',
   templateUrl: './chanel.component.html',
   styleUrl: './chanel.component.css'
-})
+}) 
 export class ChanelComponent {
   user: any;
   menuLogoSrc = 'assets/images/LogoImg.png';
   expandedIcons: Map<string, boolean> = new Map<string, boolean>();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
 
   iconsData = [
     { iconSrc: 'assets/icons/home_icon.png', text: 'Home' },
@@ -33,6 +35,33 @@ export class ChanelComponent {
     this.iconsData.forEach(iconData => {
       this.expandedIcons.set(iconData.text, false); // Set to false to keep them closed at the start
     });
+    this.sendGetRequest();
+  }
+  sendGetRequest(): void {
+    // Retrieve the bearer token from cookies
+    const bearerToken = this.cookieService.get('refreshToken');
+
+    // Define the URL for the GET request
+    const url = 'http://localhost:8085/channels/channel-user-video';
+
+    // Define headers including the bearer token
+    const headers = {
+      Authorization: `Bearer ${bearerToken}`,
+      Accept: '*/*',
+    };
+
+    // Send the GET request using Axios
+    axios.get(url, { headers })
+      .then(response => {
+        // Handle successful response
+        console.log('Response:', response.data);
+        // Process the response data as needed
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error:', error);
+        // Perform error handling such as displaying an error message
+      });
   }
 
   toggleIcon(iconName: string): void {

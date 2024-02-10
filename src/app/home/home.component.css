@@ -159,6 +159,22 @@
     gap: 0.5rem;
     width: 21vw;
   }
+  .video {
+    /* Hide default browser controls */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+  
+    /* Your desired styles for the timer */
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    height: 15rem;
+    /* Add more styles as needed */
+  }
   .video_img{
     cursor: pointer;
   }
