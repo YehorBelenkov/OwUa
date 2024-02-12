@@ -38,15 +38,11 @@
                   </div>
                   <!-- Additional icons for Menu -->
                   <div *ngIf="expandedIcons.get('Menu')" class="additional_icons">
-                    <div class="icon_container">
-                        <img class="icon" src="assets/icons/playlist_icon.png" alt="Videos Icon"/>
-                        <span>Ai mini Каверы</span>
+                    <div class="icon_container" *ngFor="let playlist of myPlaylists" (click)="navigateToPlaylist(playlist.id)">
+                        <img class="icon" src="assets/icons/playlist_icon.png" alt="Playlist Icon"/>
+                        <span>{{ playlist.title }}</span>
                     </div>
-                    <div class="icon_container">
-                        <img class="icon" src="assets/icons/playlist_icon.png" alt="Videos Icon"/>
-                        <span>Inbossik list</span>
-                    </div>
-                  </div>
+                </div>
                 <div class="icon_container " (click)="navigateToLiked()">
                     <img class="icon hidden_icon" src="assets/icons/like_icon.png" alt="Menu Icon"/>
                     <span class="icon_text">Уподобані</span>
@@ -71,9 +67,18 @@
             <!-- If user exists, display user information -->
             <div *ngIf="user; else noUser" class="profile_container_btn">
                 <!-- Check if photoUrl is not null -->
-                <ng-container *ngIf="user.photoUrl; else noPhoto">
-                  <img class="profile_img" [src]="user.photoUrl" alt="Profile img" />
+                <ng-container *ngIf="user">
+                  <ng-container *ngIf="user.pfp; then usePfp else turntoByte">
+                  </ng-container>
                 </ng-container>
+                
+                <ng-template #usePfp>
+                  <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar">
+                </ng-template>
+                
+                <ng-template #turntoByte>
+                  <img class="profile_img" [src]="user.photoUrl" alt="User Avatar">
+                </ng-template>
                 <!-- If photoUrl is null, display alternative image -->
                 <ng-template #noPhoto>
                   <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
@@ -121,29 +126,21 @@
         <div class="videos_container">
             <ng-container *ngFor="let video of (filteredVideos.length > 0 ? filteredVideos : videos)">
               <div [attr.data-content-type]="video.contentType" class="video" >
-                <div [id]="'v' + video.id" class="video_content">
-                  
-                </div>
                 <ng-container *ngIf="video.path">
-                  <!-- Use the video path as the src attribute -->
                   <div class="video-container">
                     <video class="video" #myVideo [src]="video.path" muted (click)="navigateToVideoDetails(video)"></video>
                   </div>
                 </ng-container>
-                <!-- <img class="video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content"> -->
                 <div class="creator_content_container">
-                  <img class="creator_pfp" [src]="video.avatarBytes | safe" alt="User Avatar">
+                  <img class="creator_pfp" *ngIf="video" [src]="video.avatarBytes | safe" alt="User Avatar">
                   <div class="video_information_container">
                     <h3 class="video_title">{{ video.title }}</h3>
                     <h4 class="video_creator_name">{{ video.username }}</h4>
                     <p class="video_details">{{ video.description }}</p> 
-                
-                    <!-- Check if the video path exists -->
                   </div>
                 </div>
               </div>
             </ng-container>
           </div>
-        
     </div>
 </div>

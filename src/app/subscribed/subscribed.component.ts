@@ -35,6 +35,7 @@ export class SubscribedComponent implements OnInit {
     if (storedUser) {
       this.user = JSON.parse(storedUser);
       console.log(this.user);
+      this.fetchUserData();
     } else {
       // Handle the case when there is no user data
     }
@@ -61,12 +62,8 @@ export class SubscribedComponent implements OnInit {
     axios.get('http://localhost:8085/subs/get-video-sub-user', { headers })
       .then((response) => {
         this.videos = response.data;
+        console.log("VIDEO SUB");
         console.log(this.videos);
-        this.videos.forEach((video) => {
-          console.log("Running loop: " + video.title)
-          // Use the video.id or modify it based on your video data structure
-          this.appendVideoToContainer(video.videoBytes);
-        });
       })
       .catch((error) => {
         console.error('Axios Error:', error);
@@ -76,32 +73,41 @@ export class SubscribedComponent implements OnInit {
       });
   }
 
-  appendVideoToContainer(videoBlobUrl: string) {
-    // Check if videoBlobUrl is not null
-    if (videoBlobUrl) {
-      console.log("Inside append!")
-      // Create a video element
-      const videoElement = this.renderer.createElement('video');
-
-      // Set attributes for the video element
-      this.renderer.setAttribute(videoElement, 'src', videoBlobUrl);
-      this.renderer.setAttribute(videoElement, 'controls', 'false');
-      this.renderer.setAttribute(videoElement, 'width', '300');
-      this.renderer.setAttribute(videoElement, 'height', '200');
-
-      // Add a class to the video element
-      this.renderer.addClass(videoElement, 'video');
-
-      // Append the video element to the video_content div with the specified ID
-      const allVidsContainer = this.el.nativeElement.querySelector('.allvids');
-      if (allVidsContainer) {
-        console.log("Appended!")
-        this.renderer.appendChild(allVidsContainer, videoElement);
-      }
-    }
-  }
   navigateHome() {
     this.router.navigate(['/']);
+  }
+  fetchUserData(): void {
+    // Retrieve the bearer token from cookies
+    const bearerToken = this.cookieService.get('refreshToken');
+  
+    // Define the URL for the GET request
+    const url = 'http://localhost:8085/channels/channel-user';
+  
+    // Define headers including the bearer token
+    const headers = {
+      Authorization: `Bearer ${bearerToken}`,
+      Accept: '*/*',
+    };
+  
+    // Send the GET request using Axios
+    
+    axios.get(url, { headers })
+  .then(response => {
+    // Handle successful response
+    console.log('User data response:', response.data);
+    // Check if there are any users in the response array
+    if (response.data.length > 0) {
+      // Access the avatarBytes of the first user in the array
+      this.user.pfp = response.data[0].avatarBytes;
+    } else {
+      console.error('No user data found.');
+    }
+  })
+  .catch(error => {
+    // Handle error
+    console.error('Error fetching user data:', error);
+    // Perform error handling such as displaying an error message
+  });
   }
   expandMenu() {
     // Change width to 20vw
@@ -112,5 +118,8 @@ export class SubscribedComponent implements OnInit {
 
     // Change logo image source and set its width to 10vw
     this.menuLogoSrc = 'assets/images/logo.png';
+  }
+  navigateToVideoDetails(video: any): void {
+    this.router.navigate(['/video', video.videoId]);
   }
 }

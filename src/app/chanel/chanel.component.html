@@ -70,11 +70,18 @@
           </div>
           <!-- If user exists, display user information -->
           <div *ngIf="user; else noUser" class="profile_container_btn">
-              <!-- Check if photoUrl is not null -->
-              <ng-container *ngIf="user.photoUrl; else noPhoto">
-                <img class="profile_img" [src]="user.photoUrl" alt="Profile img" />
+            <ng-container *ngIf="user">
+              <ng-container *ngIf="user.pfp; then usePfp else turntoByte">
               </ng-container>
-              <!-- If photoUrl is null, display alternative image -->
+            </ng-container>
+            
+            <ng-template #usePfp>
+              <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar">
+            </ng-template>
+            
+            <ng-template #turntoByte>
+              <img class="profile_img" [src]="user.photoUrl" alt="User Avatar">
+            </ng-template>
               <ng-template #noPhoto>
                 <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
               </ng-template>
@@ -99,18 +106,42 @@
   </div>
   <div class="creator_content_container">
       <div class="welcome_banner">
-        <img class="creator_logo" src="assets/images/unregisteredImg.png" alt="Creator Logo"/>
+        <ng-container *ngIf="user">
+          <ng-container *ngIf="user.pfp; then usePfp else turntoByte">
+          </ng-container>
+        </ng-container>
+        
+        <ng-template #usePfp>
+          <img class="creator_logo" [src]="user.pfp | safe" alt="User Avatar">
+        </ng-template>
+        
+        <ng-template #turntoByte>
+          <img class="creator_logo" [src]="user.photoUrl" alt="User Avatar">
+        </ng-template>
       </div>
       <div class="creator_info_contaier">
-          <h1>Creator Name</h1>
+          <h1 class="creator_name" *ngIf="user.displayName">{{user.displayName}}</h1>
           <div class="creator_icons_contaier">
-              <img class="creator_icon" src="/assets/icons/add_icon.png" alt="">
-              <img class="creator_icon" src="/assets/icons/info_icon.png" alt="">
+            <img class="creator_icon" src="/assets/icons/add.png" alt="" (click)="redirectToUpload()">
+              <img class="creator_icon" src="/assets/icons/information.png" alt="" (click)="toggleAdditionalDiv()">
+              <div *ngIf="showAdditionalDiv" class="additional-div">
+                <div class="channel_ratings">
+                  <p>Кількість відео </p><span *ngIf="countVids">{{countVids}}</span>
+                </div>
+                <div class="channel_ratings">
+                  <p>Кількість підпісників </p><span *ngIf="countVids">{{countVids}}</span>
+                </div>
+                
+              </div>
           </div>
       </div>
-      <button class="vid_chanel_btn">Відео каналу</button>
-  </div>
-  <div>
-    
-  </div>
+      <div class="video_container">
+        <ng-container *ngFor="let video of videos">
+          <video muted class="video_content"  (click)="navigateToVideoDetails(video)">
+            <source [src]="video.path" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </ng-container>
+      </div>
+  
 </div>

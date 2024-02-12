@@ -72,9 +72,18 @@
         <!-- If user exists, display user information -->
         <div *ngIf="user; else noUser" class="profile_container_btn">
             <!-- Check if photoUrl is not null -->
-            <ng-container *ngIf="user.photoUrl; else noPhoto">
-              <img class="profile_img" [src]="user.photoUrl" alt="Profile img" />
+            <ng-container *ngIf="user">
+              <ng-container *ngIf="user.pfp; then usePfp else turntoByte">
+              </ng-container>
             </ng-container>
+            
+            <ng-template #usePfp>
+              <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar">
+            </ng-template>
+            
+            <ng-template #turntoByte>
+              <img class="profile_img" [src]="user.photoUrl" alt="User Avatar">
+            </ng-template>
             <!-- If photoUrl is null, display alternative image -->
             <ng-template #noPhoto>
               <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
@@ -98,8 +107,27 @@
   </ng-template>
     </div>
   </div>
-  <div class="allvids">
-  
+  <div class="content_container">
+    <h1 class="following_h1">Підписки</h1>
+    <div class="videos_container">
+      <ng-container *ngFor="let video of videos">
+        <div [attr.data-content-type]="video.contentType" class="video" >
+          <ng-container *ngIf="video.path">
+            <div class="video-container">
+              <video class="video" #myVideo [src]="video.path" muted (click)="navigateToVideoDetails(video)"></video>
+            </div>
+          </ng-container>
+          <div class="creator_content_container">
+            <img class="creator_pfp" [src]="video.avatarBytes | safe" alt="User Avatar">
+            <div class="video_information_container">
+              <h3 class="video_title">{{ video.title }}</h3>
+              <h4 class="video_creator_name">{{ video.username }}</h4>
+              <p class="video_details">{{ video.description }}</p> 
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
 

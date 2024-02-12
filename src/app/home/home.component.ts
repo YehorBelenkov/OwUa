@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   filteredVideos: any[] = [];
   selectedCategory: string | null = null;
   searchQuery: string = '';
+  myPlaylists: any = [];
 
   constructor(
       private videoService: VideoService,
@@ -25,19 +26,6 @@ export class HomeComponent implements OnInit {
       private renderer: Renderer2,
       private el: ElementRef,
     ) {}
-  
-
-  loadVideos(): void {
-    // this.videoService.getAllVideos().subscribe(
-    //   (data) => {
-    //     this.videos = data; // assuming the response is an array of videos
-    //     console.log('Videos:', this.videos);
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching videos:', error);
-    //   }
-    // );
-  }
 
   menuLogoSrc = 'assets/images/LogoImg.png';
 
@@ -51,13 +39,16 @@ export class HomeComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.loadVideos();
     //store user data to display after
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       // Parse the JSON string to get the user object
       this.user = JSON.parse(storedUser);
       console.log(this.user);
+      if (!this.user.photoUrl.startsWith("http")) {
+        this.fetchUserData();
+      } 
+      
     } else {
       // Handle the case when there is no user data
     }
@@ -73,7 +64,6 @@ export class HomeComponent implements OnInit {
     }
 
     const bearerToken = this.cookieService.get('refreshToken');
-    console.log(bearerToken);
 
     // Set up headers
     const headers = {
@@ -85,16 +75,16 @@ export class HomeComponent implements OnInit {
 
     // Make Axios GET request to fetch video data
     axios.get('http://10.0.0.151:8085/video/all', { headers })
-  .then(response => {
-    this.videos = response.data;
-    console.log('Video data:', this.videos);
+    .then(response => {
+      this.videos = response.data;
+      console.log('Video data:', this.videos);
     
-    console.log("Video data:");
-    console.log(this.videos);
-  })
-  .catch(error => {
-    console.error('Error fetching video data:', error);
-  });
+      console.log("Video data:");
+      console.log(this.videos);
+    })
+    .catch(error => {
+      console.error('Error fetching video data:', error);
+    });
 
     axios.get('http://10.0.0.151:8085/category/all-category', { headers })
       .then(response => {
@@ -104,7 +94,6 @@ export class HomeComponent implements OnInit {
       .catch(error => {
         console.error('Error fetching categories:', error);
       });
-
   }
   expandMenu() {
     // Change width to 20vw
@@ -150,6 +139,42 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  fetchUserData(): void {
+    // Retrieve the bearer token from cookies
+    const bearerToken = this.cookieService.get('refreshToken');
+  
+    // Define the URL for the GET request
+    const url = 'http://localhost:8085/channels/channel-user';
+  
+    // Define headers including the bearer token
+    const headers = {
+      Authorization: `Bearer ${bearerToken}`,
+      Accept: '*/*',
+    };
+  
+    // Send the GET request using Axios
+    
+    axios.get(url, { headers })
+  .then(response => {
+    // Handle successful response
+    console.log('User data response:', response.data);
+    // Check if there are any users in the response array
+    if (response.data.length > 0) {
+      // Access the avatarBytes of the first user in the array
+      this.user.pfp = response.data[0].avatarBytes;
+      console.log("USER BYTES");
+      console.log(this.user.pfp);
+      
+    } else {
+      console.error('No user data found.');
+    }
+  })
+  .catch(error => {
+    // Handle error
+    console.error('Error fetching user data:', error);
+    // Perform error handling such as displaying an error message
+  });
+  }
   resetMenu() {
     // Reset width
     const menuContainer = document.querySelector('.menu_container') as HTMLElement;
@@ -178,6 +203,23 @@ export class HomeComponent implements OnInit {
 
   toggleIcon(iconName: string): void {
     this.expandedIcons.set(iconName, !this.expandedIcons.get(iconName));
+    if(iconName == "Menu"){
+      this.fetchUserPlaylists()
+    }
+  }
+  async fetchUserPlaylists() {
+    const token = this.cookieService.get('refreshToken');
+    try {
+      const response = await axios.get('http://localhost:8085/playlist/user-playlists', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log(response.data);
+      this.myPlaylists = response.data;
+    } catch (error) {
+      console.error('Error fetching user playlists:', error);
+    }
   }
 
   //Filter videos to display!
@@ -231,5 +273,7 @@ navigateToVideoDetails(video: any): void {
 navigateToLiked() {
   this.router.navigate(['/Liked']);
 }
-
+navigateToPlaylist(playlistId: string) {
+  this.router.navigate(['/playlist', playlistId]);
+}
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-video',
@@ -21,7 +22,15 @@ export class VideoComponent implements OnInit {
   countDislike: number = 0; 
   isButtonDisabled = false;
   likebtnClick = false;
-  dislikebtnClick = false
+  dislikebtnClick = false;
+  ifCreator = false;
+  showPopup = false;
+  showNestedPopup = false;
+  playlistTitle: string = "";
+
+  recommendedVideos: any = [];
+
+  myPlaylists: any = [];
 
   SubscribeBtn: any = {
     ActiveBtn: false,
@@ -33,7 +42,8 @@ export class VideoComponent implements OnInit {
     private route: ActivatedRoute,
     private renderer: Renderer2,
     private el: ElementRef,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +51,8 @@ export class VideoComponent implements OnInit {
       this.videoName = params['id']; // Assuming the route parameter is named 'id'
       console.log("Video name: " + this.videoName)
       this.fetchVideoBytes();
-      
+
+      this.fetchRecommendedVids(Number(this.video.contentType));
     });
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
@@ -49,6 +60,7 @@ export class VideoComponent implements OnInit {
       this.user = JSON.parse(storedUser);
       console.log("User Data: ");
       console.log(this.user);
+      this.fetchUserData();
     } else {
       // Handle the case when there is no user data
     }
@@ -69,6 +81,11 @@ export class VideoComponent implements OnInit {
       if (response.status === 200) {
         this.video = response.data;
         console.log("Video: ", this.video);
+        if(this.video.userId === this.user.id){
+          this.ifCreator = true;
+        }
+
+        this.fetchRecommendedVids(this.video.contentType);
   
         await this.updateCounts(token); // Update counts after video data is fetched
         this.getComments();
@@ -80,6 +97,26 @@ export class VideoComponent implements OnInit {
       // Handle error, maybe set a default video or display an error message
     }
   }
+  fetchRecommendedVids(category: number): void {
+    const token = this.cookieService.get('refreshToken');
+
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
+
+    // Make Axios GET request to fetch recommended videos
+    axios.get(`http://localhost:8085/home/sort?videoCategoryId=${category}`, { headers })
+        .then(response => {
+            // Handle successful response
+            this.recommendedVideos = response.data.filter((video: any) => video.id !== this.video.id);
+            console.log("RECOMMENDED VIDS");
+            console.log(this.recommendedVideos);
+        })
+        .catch(error => {
+            // Handle error
+            console.error('Error fetching recommended videos:', error);
+        });
+    }
   async updateCounts(token: string): Promise<void> {
     try {
       this.countLike = await this.getCountLike(token);
@@ -106,6 +143,40 @@ export class VideoComponent implements OnInit {
       console.error('Error fetching countLikes:', error);
       return 0; // Return a default value or handle it as needed
     }
+  }
+
+  fetchUserData(): void {
+    // Retrieve the bearer token from cookies
+    const bearerToken = this.cookieService.get('refreshToken');
+  
+    // Define the URL for the GET request
+    const url = 'http://localhost:8085/channels/channel-user';
+  
+    // Define headers including the bearer token
+    const headers = {
+      Authorization: `Bearer ${bearerToken}`,
+      Accept: '*/*',
+    };
+  
+    // Send the GET request using Axios
+    
+    axios.get(url, { headers })
+  .then(response => {
+    // Handle successful response
+    console.log('User data response:', response.data);
+    // Check if there are any users in the response array
+    if (response.data.length > 0) {
+      // Access the avatarBytes of the first user in the array
+      this.user.pfp = response.data[0].avatarBytes;
+    } else {
+      console.error('No user data found.');
+    }
+  })
+  .catch(error => {
+    // Handle error
+    console.error('Error fetching user data:', error);
+    // Perform error handling such as displaying an error message
+  });
   }
 
   async getCountLike(token: string): Promise<number> {
@@ -139,7 +210,7 @@ export class VideoComponent implements OnInit {
       }
     })
       .then(response => {
-        // Handle the response if needed
+        // Handle the response if needed 
         console.log('Successfully added like/dislike:', response);
         if (gradeId === 1) {
           this.likebtnClick = true;
@@ -262,5 +333,78 @@ export class VideoComponent implements OnInit {
 
     // Remove the temporary input element
     document.body.removeChild(tempInput);
+  }
+  navigateToVideoDetails(video: any): void {
+    this.router.navigate(['/video', video.id]);
+  }
+  openPopup() {
+    this.showPopup = true;
+    this.fetchUserPlaylists();
+  }
+  async fetchUserPlaylists() {
+    const token = this.cookieService.get('refreshToken');
+    try {
+      const response = await axios.get('http://localhost:8085/playlist/user-playlists', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log(response.data);
+      this.myPlaylists = response.data;
+    } catch (error) {
+      console.error('Error fetching user playlists:', error);
+    }
+  }
+  toggleNestedPopup() {
+    this.showNestedPopup = true;
+  }
+  submitPlaylist(){
+    this.createPlaylist();
+  }
+  async createPlaylist() {
+    const token = this.cookieService.get('refreshToken');
+    const formData = new FormData();
+    formData.append('title', this.playlistTitle);
+    formData.append('accessStatus', '1'); // Leaving accessStatus to 1 by default
+  
+    try {
+      const response = await axios.post('http://localhost:8085/playlist/create-playlist', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log('Playlist created:', response.data);
+      this.showNestedPopup = false;
+      this.fetchUserPlaylists();
+    } catch (error) {
+      console.error('Error creating playlist:', error);
+    }
+  }
+  addToPlaylist(playlist: any) {
+    const token = this.cookieService.get('refreshToken'); // Assuming you have token management logic
+    const formData = new FormData();
+    formData.append('playListId', playlist.id); // Assuming the playlist object has an id property
+    formData.append('videoId', this.video.id); // Leave videoId empty
+
+    try {
+      axios.post('http://localhost:8085/list_video/add-video-playlist', formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
+        console.log('Video added to playlist:', response.data);
+        this.closePopup();
+      }).catch(error => {
+        console.error('Error adding video to playlist:', error);
+      });
+    } catch (error) {
+      console.error('Error adding video to playlist:', error);
+    }
+  }
+  closePopup() {
+    this.showPopup = false;
+    this.showNestedPopup = false;
   }
 }

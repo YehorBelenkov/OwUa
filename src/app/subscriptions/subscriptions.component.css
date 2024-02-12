@@ -87,6 +87,7 @@
 }
 .profile_img{
     width: 3vw;
+    height: 3vw;
     cursor: pointer;
     border-radius: 50px;
 }
@@ -155,6 +156,8 @@
   }
   .sub_img{
     width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
   }
   .unfollow_btn{
     height: 5vh;
@@ -167,4 +170,8 @@
     cursor: pointer;
     position: absolute;
     right: 15vw;
+    transition-duration: 0.2s;
+  }
+  .unfollow_btn:hover{
+    background-color: #5A58C9;
   }

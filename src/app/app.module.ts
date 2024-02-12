@@ -17,6 +17,7 @@ import { FinishedComponent } from './finished/finished.component';
 import { CreatenewpasswordComponent } from './createnewpassword/createnewpassword.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MostLikedComponent } from './most-liked/most-liked.component';
+import { PlaylistComponent } from './playlist/playlist.component';
 import { CommentsComponent } from './comments/comments.component';
 import { GetvideoComponent } from './getvideo/getvideo.component';
 import { WatchedvideoComponent } from './watchedvideo/watchedvideo.component';
@@ -58,7 +59,8 @@ import { AuthService } from './auth.service';
     SubscriptionsComponent,
     SubscribedComponent,
     SafePipe,
-    VideoPipe
+    VideoPipe,
+    PlaylistComponent
   ],
   imports: [
     BrowserModule,
@@ -68,11 +70,11 @@ import { AuthService } from './auth.service';
     CommonModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig), // Initialize Firebase
-    AngularFireAuthModule, // Import the AngularFireAuthModule
-    AngularFireStorageModule, // Import the AngularFireStorageModule
-    AngularFirestoreModule, // Import the AngularFirestoreModule
-    AngularFireDatabaseModule // Import the AngularFireDatabaseModule
+    AngularFireModule.initializeApp(environment.firebaseConfig), 
+    AngularFireAuthModule, 
+    AngularFireStorageModule, 
+    AngularFirestoreModule,
+    AngularFireDatabaseModule 
   ],
   providers: [AuthService, CookieService],
   bootstrap: [AppComponent]

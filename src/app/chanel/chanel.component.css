@@ -87,6 +87,7 @@
 }
 .profile_img{
     width: 3vw;
+    height: 3vw;
     cursor: pointer;
     border-radius: 50px;
 }
@@ -124,7 +125,9 @@
 }
 
 .creator_logo{
-    width: 10vw;
+    width: 7vw;
+    height: 7vw;
+    border-radius: 50%;
 }
 .creator_info_contaier{
     width: 80vw;
@@ -132,18 +135,53 @@
     align-items: center;
     justify-content: center;
 }
-.creator_icons_contaier{
-    display: flex;
-    gap: 1rem;
-   right: 0.1rem;
-   position: absolute;
+.creator_icons_contaier {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  cursor: pointer;
+  padding-top: 1rem;
 }
-.vid_chanel_btn{
-    color: white;
-    background-color: #5A58C9;
-    border-radius: 10px;
-    padding: 0.5rem 1rem 0.5rem 1rem;
-    font-size: 22px;
-    margin-left: 2rem;
-    cursor: pointer;
+.creator_icon{
+  width: 4vw;
+  height: 4vw;
+  transition-duration: 0.2s;
+}
+.creator_icon:hover{
+  transform: scale(0.9);
+}
+.additional-div{
+  position: absolute;
+  margin-top: 4rem;
+  margin-left: -12rem;
+  width: 15rem;
+  border-radius: 10px 0 10px 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: #0C0F14;
+}
+.channel_ratings{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.channel_ratings p, .channel_ratings span{
+  font-size: 20px;
+}
+.creator_name{
+  position: relative;
+  margin-left: 34rem;
+}
+.video_container{
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-left: 3rem;
+  margin-top: 2vw;
+}
+.video_content{
+  width: 30%;
+  height: 13rem;
+  cursor: pointer;
 }

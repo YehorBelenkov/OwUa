@@ -85,6 +85,7 @@
 }
 .profile_img{
     width: 3vw;
+    height: 3vw;
     cursor: pointer;
     border-radius: 50px;
 }
@@ -158,23 +159,9 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 21vw;
+    cursor: pointer;
   }
-  .video {
-    /* Hide default browser controls */
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    border: none;
   
-    /* Your desired styles for the timer */
-    font-size: 16px;
-    color: white;
-    background-color: black;
-    padding: 5px;
-    border-radius: 5px;
-    height: 15rem;
-    /* Add more styles as needed */
-  }
   .video_img{
     cursor: pointer;
   }

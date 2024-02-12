@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="buttons_section_container">
-                    <button class="follow_btn" (click)="handleSubscribe()" [disabled]="SubscribeBtn.Disabled" [class.active]="SubscribeBtn.ActiveBtn">Підписатись</button>
+                    <button *ngIf="!ifCreator" class="follow_btn" (click)="handleSubscribe()" [disabled]="SubscribeBtn.Disabled" [class.active]="SubscribeBtn.ActiveBtn">Підписатись</button>
                     <div class="interection_btn_container">
                         <div class="like_displike_container">
                             <div class="like_container">
@@ -53,17 +53,48 @@
                         <button class="share_btn" (click)="copyLink()">
                             <img src="assets/icons/share_icon.png" alt="Share Button">
                         </button>
+                        <button class="share_btn" (click)="openPopup()">
+                            <img class="saveVid" src="assets/icons/saveVid.png">
+                        </button>
+                        
+                        <div class="popup" *ngIf="showPopup">
+                            <img src="assets/icons/close.png" class="close-icon" (click)="closePopup()">
+                            <div class="playlist_container">
+                                <div class="add_el" (click)="toggleNestedPopup()">
+                                    <img class="icon_img" src="/assets/icons/add.png" alt="">
+                                    <h1>Create new Playlist</h1>
+                                </div>
+                                <div class="add_el" *ngFor="let playlist of myPlaylists" (click)="addToPlaylist(playlist)">
+                                    <h2>{{ playlist.title }}</h2>
+                                </div>
+                                <div class="nested-popup" *ngIf="showNestedPopup">
+                                    <h1>Create New Playlist!</h1>
+                                    <input type="text" placeholder="Title" [(ngModel)]="playlistTitle" class="inp_p_title">
+                                    <button class="sub_btn_p" (click)="submitPlaylist()">Submit</button>
+                                </div>
+                            </div>
+                        </div>
                         <!-- <button class="interection_vid_btn"><span class="three_dots">...</span></button> -->
                     </div>
                 </div>
             </div>
             <div class="write_comment_container">
-                <ng-container *ngIf="user.photoUrl; else noPhoto">
-                    <img class="creator_profile" [src]="user.photoUrl" alt="Profile img" />
+                
+                  <ng-container *ngIf="user">
+                    <ng-container *ngIf="user.pfp; then usePfp else turntoByte">
+                    </ng-container>
                   </ng-container>
+                  
+                  <ng-template #usePfp>
+                    <img class="creator_profile" [src]="user.pfp | safe" alt="User Avatar">
+                  </ng-template>
+                  
+                  <ng-template #turntoByte>
+                    <img class="creator_profile" [src]="user.photoUrl" alt="User Avatar">
+                  </ng-template>
                   <!-- If photoUrl is null, display alternative image -->
                   <ng-template #noPhoto>
-                    <img class="creator_profile" src="assets/images/unregisteredImg.png" alt="No User Found" />
+                    <img class="creator_profile" [src]="user ? (user.pfp | safe) : 'assets/images/unregisteredImg.png'" alt="Creator Logo"/>
                   </ng-template>
                 <div class="leave_a_comment_container">
                     <input class="comment_input" type="text" placeholder="Введіть коментар" [(ngModel)]="commentText"> 
@@ -91,44 +122,14 @@
         </div>
         <div class="other_videos_section_container">
             <p class="also_might_like_p">Також вам можуть сподобатись: </p>
-            <div class="recommended_video_container">
-                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
+            <div *ngFor="let video of recommendedVideos" class="recommended_video_container">
+                <video muted class="recommended_video_img" (click)="navigateToVideoDetails(video)">
+                    <source [src]="video.path" type="video/mp4">
+                </video>
                 <div class="side_content_rec_vid_container">
-                    <h4 class="rec_title_vid">Recommended Video!</h4>
-                    <p class="rec_creator_name_vid">Creator Name</p>
-                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
-                </div>
-            </div>
-            <div class="recommended_video_container">
-                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="side_content_rec_vid_container">
-                    <h4 class="rec_title_vid">Recommended Video!</h4>
-                    <p class="rec_creator_name_vid">Creator Name</p>
-                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
-                </div>
-            </div>
-            <div class="recommended_video_container">
-                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="side_content_rec_vid_container">
-                    <h4 class="rec_title_vid">Recommended Video!</h4>
-                    <p class="rec_creator_name_vid">Creator Name</p>
-                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
-                </div>
-            </div>
-            <div class="recommended_video_container">
-                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="side_content_rec_vid_container">
-                    <h4 class="rec_title_vid">Recommended Video!</h4>
-                    <p class="rec_creator_name_vid">Creator Name</p>
-                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
-                </div>
-            </div>
-            <div class="recommended_video_container">
-                <img class="recommended_video_img" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video Content">
-                <div class="side_content_rec_vid_container">
-                    <h4 class="rec_title_vid">Recommended Video!</h4>
-                    <p class="rec_creator_name_vid">Creator Name</p>
-                    <p class="watch_content_rec_vid">2,8 млн переглядiв 3 роки тому </p>
+                    <h4 class="rec_title_vid">{{ video.title }}</h4>
+                    <p class="rec_creator_name_vid">Creator Name</p> <!-- You may replace this with actual creator data -->
+                    <p class="watch_content_rec_vid">{{ video.views }} переглядiв {{ video.uploadDate | date: 'dd.MM.yyyy' }}</p>
                 </div>
             </div>
         </div>

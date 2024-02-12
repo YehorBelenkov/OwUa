@@ -76,6 +76,13 @@ export class UploadVideoComponent {
       formData.append('description', this.video.description);
       formData.append('categoryId', this.video.categoryId.toString()); // Use the selected categoryId
       formData.append('accessStatusId', this.video.accessStatusId.toString()); // Use the selected accessStatusId
+
+      console.log("Description!");
+      console.log(this.video.description);
+      console.log("Category!");
+      console.log(this.video.categoryId.toString());
+      console.log("this.video.accessStatusId.toString()!");
+      console.log(this.video.accessStatusId.toString());
   
       // Check if file is selected before appending
         const downloadURL = await this.addDate();
@@ -91,7 +98,7 @@ export class UploadVideoComponent {
       };
   
       // Make the POST request
-      const response = await axios.post('http://localhost:8085/video/uploadNew', formData, { headers });
+      const response = await axios.post('http://localhost:8085/video/upload', formData, { headers });
       console.log('Success', response.data);
       // Handle success
       

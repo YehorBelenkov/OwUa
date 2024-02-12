@@ -38,15 +38,11 @@
                   </div>
                   <!-- Additional icons for Menu -->
                   <div *ngIf="expandedIcons.get('Menu')" class="additional_icons">
-                    <div class="icon_container">
-                        <img class="icon" src="assets/icons/playlist_icon.png" alt="Videos Icon"/>
-                        <span>Ai mini Каверы</span>
-                    </div>
-                    <div class="icon_container">
-                        <img class="icon" src="assets/icons/playlist_icon.png" alt="Videos Icon"/>
-                        <span>Inbossik list</span>
-                    </div>
-                  </div>
+                    <a class="icon_container" *ngFor="let playlist of myPlaylists" href="http://localhost:4200/playlist/{{playlist.id}}">
+                        <img class="icon" src="assets/icons/playlist_icon.png" alt="Playlist Icon"/>
+                        <span>{{ playlist.title }}</span>
+                    </a>
+                </div>
                 <div class="icon_container ">
                     <img class="icon " src="assets/icons/like_icon.png" alt="Menu Icon"/>
                     <span class="">Уподобані</span>
@@ -105,30 +101,27 @@
         </div>
         <div class="like_list_container">
             <div class="interaction_container">
-                <ng-container *ngIf="primaryVid">
-                    <video class="video_selected" [src]="primaryVid.path ? primaryVid.path : 'assets/images/unregisteredImg.png'"  muted></video>
-                    <h2 class="liked_vids_h1">Вiдео, якi сподобалися</h2>
-                    <!-- <p class="creator_name">{{ primaryVid.userName }}</p> -->
-                    <p class="video_info">{{ primaryVid.views }} {{ primaryVid.uploadDate | date: 'dd.MM.yyyy' }}</p>
+                <ng-container *ngIf="selectedVidFromPlaylist">
+                    <video class="video_selected" [src]="selectedVidFromPlaylist.path ? selectedVidFromPlaylist.path : 'assets/images/unregisteredImg.png'"  muted></video>
+                    <h2 class="liked_vids_h1">{{ selectedVidFromPlaylist.title }}</h2>
+                    <!-- Additional details about the video can be displayed here -->
                 </ng-container>
-                <ng-container *ngIf="!primaryVid">
+                <ng-container *ngIf="!selectedVidFromPlaylist">
+                    <!-- Fallback content if no video is selected -->
                     <img class="video_selected" src="https://images.pexels.com/videos/1722967/free-video-1722967.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Video">
-                    <!-- Add any additional content or fallback information here -->
                 </ng-container>
                 <div class="buttons_container_interaction">
-                    <button class="play_btn" (click)="navigateToVideo(primaryVid.id)">
+                    <button class="play_btn" (click)="playSelectedVideo()">
                         <img src="assets/icons/polygon_icon.png" alt="polygon">Вiдновити
                     </button>
-                   
                 </div>
             </div>
             <div class="select_liked_vid">
-                <div class="liked_vid_container" *ngFor="let video of likedvids; let i = index" (click)="markAsPrimary(video)">
+                <div class="liked_vid_container" *ngFor="let video of videoPlaylist; let i = index" (click)="selectVideoFromPlaylist(video)">
                     <h2 class="liked_n_v_h2">{{ i + 1 }}</h2>
-                    <video  class="liked_vid_img" muted [src]="video.path ? video.path : 'assets/videos/default-video.mp4'"></video>
+                    <video class="liked_vid_img" muted [src]="video.path ? video.path : 'assets/videos/default-video.mp4'"></video>
                     <div class="liked_content_container">
                         <h2 class="liked_content_name">{{ video.title }}</h2>
-                        <p class="liked_content_info">{{ video.views }} {{ video.uploadDate | date: 'dd.MM.yyyy' }}</p>
                     </div>
                 </div>
             </div>
