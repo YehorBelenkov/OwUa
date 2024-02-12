@@ -148,8 +148,7 @@ export class SubscriptionsComponent {
   });
   }
   
-  navigateHome() {
-    this.router.navigate(['/']);
+  navigateToRoute(routePath: string) {
+    this.router.navigate([routePath]);
   }
-  
 }

@@ -240,9 +240,9 @@ export class HomeComponent implements OnInit {
 // Add this method
 filterVideos() {
   if (this.selectedCategory) {
-      this.filteredVideos = this.videos.filter(video => video.contentType == this.selectedCategory);
+    this.filteredVideos = this.videos.filter(video => video.contentType == this.selectedCategory);
   } else {
-      this.filteredVideos = this.videos;
+    this.filteredVideos = this.videos;
   }
 }
 // Add the searchVideos method
@@ -270,10 +270,10 @@ searchVideos() {
 navigateToVideoDetails(video: any): void {
   this.router.navigate(['/video', video.id]);
 }
-navigateToLiked() {
-  this.router.navigate(['/Liked']);
-}
 navigateToPlaylist(playlistId: string) {
   this.router.navigate(['/playlist', playlistId]);
+}
+navigateToRoute(routePath: string) {
+  this.router.navigate([routePath]);
 }
 }

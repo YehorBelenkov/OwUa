@@ -7,7 +7,7 @@
                     <img class="icon" src="assets/icons/home_icon.png" alt="Home Icon"/>
                     <span class="icon_text">Головна </span>
                 </div>
-                <div class="icon_container">
+                <div class="icon_container" (click)="navigateToRoute('/Subscriptions')">
                     <img class="icon" src="assets/icons/videos_icon.png" alt="Videos Icon"/>
                     <span class="icon_text">Підписки</span>
                 </div>
@@ -19,7 +19,7 @@
                   </div>
                   <!-- Additional icons for Categories -->
                   <div *ngIf="expandedIcons.get('Categories')" class="additional_icons">
-                    <div class="icon_container">
+                    <div class="icon_container" (click)="navigateToRoute('/Subscribed')">
                         <img class="icon" src="assets/icons/profile_icon.png" alt="Videos Icon"/>
                         <span>Підписки</span>
                     </div>
@@ -43,7 +43,7 @@
                         <span>{{ playlist.title }}</span>
                     </div>
                 </div>
-                <div class="icon_container " (click)="navigateToLiked()">
+                <div class="icon_container " (click)="navigateToRoute('/Liked')">
                     <img class="icon hidden_icon" src="assets/icons/like_icon.png" alt="Menu Icon"/>
                     <span class="icon_text">Уподобані</span>
                 </div>
@@ -54,14 +54,6 @@
                 <div class="icon_container">
                     <img class="icon hidden_icon" src="assets/icons/settings_icon.png" alt="Menu Icon"/>
                     <span class="icon_text">Налаштування</span>
-                </div>
-                <div class="icon_container">
-                    <img class="icon hidden_icon" src="assets/icons/warning_icon.png" alt="Menu Icon"/>
-                    <span class="icon_text">Довідка</span>
-                </div>
-                <div class="icon_container">
-                    <img class="icon hidden_icon" src="assets/icons/flag_icon.png" alt="Menu Icon"/>
-                    <span class="icon_text">Сигнал адмінам</span>
                 </div>
             </div>
             <!-- If user exists, display user information -->

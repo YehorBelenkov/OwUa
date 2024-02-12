@@ -407,4 +407,7 @@ export class VideoComponent implements OnInit {
     this.showPopup = false;
     this.showNestedPopup = false;
   }
+  navigateToRoute(routePath: string) {
+    this.router.navigate([routePath]);
+  }
 }

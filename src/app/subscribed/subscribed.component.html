@@ -4,11 +4,11 @@
     <div class="menu_container" (mouseenter)="expandMenu()">
         <img class="logo_closed_menu" src="assets/images/logo.png" alt="OwUa Logo Image"/>
         <div class="more_icons_container">
-            <div class="icon_container " (click)="navigateHome()">
+            <div class="icon_container " (click)="navigateToRoute('/')">
                 <img class="icon" src="assets/icons/home_icon.png" alt="Home Icon"/> 
                 <span class="">Головна </span>
             </div>
-            <div class="icon_container">
+            <div class="icon_container" (click)="navigateToRoute('/Subscriptions')">
                 <img class="icon" src="assets/icons/videos_icon.png" alt="Videos Icon"/>
                 <span class="">Підписки</span>
             </div>
@@ -20,7 +20,7 @@
               </div>
               <!-- Additional icons for Categories -->
               <div *ngIf="expandedIcons.get('Categories')" class="additional_icons">
-                <div class="icon_container">
+                <div class="icon_container" (click)="navigateToRoute('/Subscribed')">
                     <img class="icon" src="assets/icons/profile_icon.png" alt="Videos Icon"/>
                     <span>Підписки</span>
                 </div>
@@ -48,7 +48,7 @@
                     <span>Inbossik list</span>
                 </div>
               </div>
-            <div class="icon_container ">
+            <div class="icon_container " (click)="navigateToRoute('/Liked')">
                 <img class="icon " src="assets/icons/like_icon.png" alt="Menu Icon"/>
                 <span class="">Уподобані</span>
             </div>
@@ -59,14 +59,6 @@
             <div class="icon_container">
                 <img class="icon " src="assets/icons/settings_icon.png" alt="Menu Icon"/>
                 <span class="">Налаштування</span>
-            </div>
-            <div class="icon_container">
-                <img class="icon " src="assets/icons/warning_icon.png" alt="Menu Icon"/>
-                <span class="">Довідка</span>
-            </div>
-            <div class="icon_container">
-                <img class="icon " src="assets/icons/flag_icon.png" alt="Menu Icon"/>
-                <span class="">Сигнал адмінам</span>
             </div>
         </div>
         <!-- If user exists, display user information -->

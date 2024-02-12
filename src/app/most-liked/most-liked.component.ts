@@ -125,11 +125,11 @@ export class MostLikedComponent implements OnInit {
     console.log("CHANGED");
 }
   
-  navigateHome() {
-    this.router.navigate(['/']);
-  }
   navigateToVideo(videoId: number): void {
     // Navigate to the video details page with the video ID
     this.router.navigate(['/video', videoId]);
+}
+navigateToRoute(routePath: string) {
+  this.router.navigate([routePath]);
 }
 }

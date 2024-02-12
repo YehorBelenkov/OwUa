@@ -73,9 +73,6 @@ export class SubscribedComponent implements OnInit {
       });
   }
 
-  navigateHome() {
-    this.router.navigate(['/']);
-  }
   fetchUserData(): void {
     // Retrieve the bearer token from cookies
     const bearerToken = this.cookieService.get('refreshToken');
@@ -121,5 +118,8 @@ export class SubscribedComponent implements OnInit {
   }
   navigateToVideoDetails(video: any): void {
     this.router.navigate(['/video', video.videoId]);
+  }
+  navigateToRoute(routePath: string) {
+    this.router.navigate([routePath]);
   }
 }
