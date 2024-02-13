@@ -59,7 +59,7 @@ export class SubscribedComponent implements OnInit {
       // Add other headers as needed
     };
 
-    axios.get('http://localhost:8085/subs/get-video-sub-user', { headers })
+    axios.get('http://nikstep.com.ua:8085/subs/get-video-sub-user', { headers })
       .then((response) => {
         this.videos = response.data;
         console.log("VIDEO SUB");
@@ -78,7 +78,7 @@ export class SubscribedComponent implements OnInit {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {

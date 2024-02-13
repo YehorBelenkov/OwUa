@@ -63,7 +63,7 @@ export class SubscriptionsComponent {
     const bearerToken = this.cookieService.get('refreshToken');
 
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/subs/subscribed-users';
+    const url = 'http://nikstep.com.ua:8085/subs/subscribed-users';
 
     // Define headers including the bearer token
     const headers = {
@@ -90,7 +90,7 @@ export class SubscriptionsComponent {
     const bearerToken = this.cookieService.get('refreshToken');
 
     // Define the URL for the DELETE request
-    const url = 'http://localhost:8085/subs/unsubscribe';
+    const url = 'http://nikstep.com.ua:8085/subs/unsubscribe';
 
     // Create FormData to include the targetUserId
     const formData = new FormData();
@@ -121,7 +121,7 @@ export class SubscriptionsComponent {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {

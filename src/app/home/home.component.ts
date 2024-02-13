@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit {
     };
 
     // Make Axios GET request to fetch video data
-    axios.get('http://10.0.0.151:8085/video/all', { headers })
+    axios.get('http://nikstep.com.ua:8085/video/all', { headers })
     .then(response => {
       this.videos = response.data;
       console.log('Video data:', this.videos);
@@ -86,7 +86,7 @@ export class HomeComponent implements OnInit {
       console.error('Error fetching video data:', error);
     });
 
-    axios.get('http://10.0.0.151:8085/category/all-category', { headers })
+    axios.get('http://nikstep.com.ua:8085/category/all-category', { headers })
       .then(response => {
         this.categories = response.data;
         console.log(this.categories);
@@ -144,7 +144,7 @@ export class HomeComponent implements OnInit {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {
@@ -208,7 +208,7 @@ export class HomeComponent implements OnInit {
   async fetchUserPlaylists() {
     const token = this.cookieService.get('refreshToken');
     try {
-      const response = await axios.get('http://localhost:8085/playlist/user-playlists', {
+      const response = await axios.get('http://nikstep.com.ua:8085/playlist/user-playlists', {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -53,7 +53,7 @@ export class ChanelComponent {
     const bearerToken = this.cookieService.get('refreshToken');
 
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user-video';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user-video';
 
     // Define headers including the bearer token
     const headers = {
@@ -85,7 +85,7 @@ export class ChanelComponent {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {
@@ -124,8 +124,8 @@ export class ChanelComponent {
   }
   fetchRatings(): void {
     const bearerToken = this.cookieService.get('refreshToken');
-    const subscriptionUrl = 'http://localhost:8085/subs/count_subscriptionMyChannel';
-    const videoUrl = 'http://localhost:8085/video/count_videoOfMyChannel';
+    const subscriptionUrl = 'http://nikstep.com.ua:8085/subs/count_subscriptionMyChannel';
+    const videoUrl = 'http://nikstep.com.ua:8085/video/count_videoOfMyChannel';
   
     const headers = {
       Authorization: `Bearer ${bearerToken}`

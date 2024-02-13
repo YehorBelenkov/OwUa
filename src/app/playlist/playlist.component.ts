@@ -59,7 +59,7 @@ export class PlaylistComponent implements OnInit {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {
@@ -118,7 +118,7 @@ export class PlaylistComponent implements OnInit {
       formData.append('playListId', this.playlistId.toString());
       console.log("PLAYLIST: " + this.playlistId);
       
-      const response = await axios.get(`http://localhost:8085/list_video/all-video-playlist?playListId=${this.playlistId}`, {
+      const response = await axios.get(`http://nikstep.com.ua:8085/list_video/all-video-playlist?playListId=${this.playlistId}`, {
       headers: {
       Authorization: `Bearer ${token}`
   }
@@ -134,7 +134,7 @@ export class PlaylistComponent implements OnInit {
   async fetchUserPlaylists() {
     const token = this.cookieService.get('refreshToken');
     try {
-      const response = await axios.get('http://localhost:8085/playlist/user-playlists', {
+      const response = await axios.get('http://nikstep.com.ua:8085/playlist/user-playlists', {
         headers: {
           Authorization: `Bearer ${token}`
         }

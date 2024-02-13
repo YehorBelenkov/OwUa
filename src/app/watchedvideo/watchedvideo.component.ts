@@ -10,7 +10,7 @@ export class WatchedvideoComponent {
   constructor(private http: HttpClient) { }
 
   likeVideo(videoId: number) {
-    const apiUrl = `http://localhost:8085/grade/like?grade_id=1&video_id=${videoId}`;
+    const apiUrl = `http://nikstep.com.ua:8085/grade/like?grade_id=1&video_id=${videoId}`;
 
     // Making the GET request using Angular's HttpClient
     this.http.get(apiUrl)
@@ -27,7 +27,7 @@ export class WatchedvideoComponent {
   }
 
   dislikeVideo(videoId: number) {
-    const apiUrl = `http://localhost:8085/grade/dislike?grade_id=2&video_id=${videoId}`;
+    const apiUrl = `http://nikstep.com.ua:8085/grade/dislike?grade_id=2&video_id=${videoId}`;
 
     // Making the GET request using Angular's HttpClient
     this.http.get(apiUrl)
@@ -44,7 +44,7 @@ export class WatchedvideoComponent {
   }
 
   countLikes(videoId: number) {
-    const apiUrl = `http://localhost:8085/grade/countlike?videoId=${videoId}`;
+    const apiUrl = `http://nikstep.com.ua:8085/grade/countlike?videoId=${videoId}`;
 
     // Making the GET request using Angular's HttpClient
     this.http.get(apiUrl)
@@ -61,7 +61,7 @@ export class WatchedvideoComponent {
   }
 
   countDislikes(videoId: number) {
-    const apiUrl = `http://localhost:8085/grade/countdislike?videoId=${videoId}`;
+    const apiUrl = `http://nikstep.com.ua:8085/grade/countdislike?videoId=${videoId}`;
 
     // Making the GET request using Angular's HttpClient
     this.http.get(apiUrl)

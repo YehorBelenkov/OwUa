@@ -45,7 +45,7 @@ export class MostLikedComponent implements OnInit {
   }
   fetchLikedVideos(): void {
     const bearerToken = this.cookieService.get('refreshToken');
-    axios.get('http://localhost:8085/grade/liked-videos/1', {
+    axios.get('http://nikstep.com.ua:8085/grade/liked-videos/1', {
       headers: {
         Authorization: `Bearer ${bearerToken}`
       }
@@ -65,7 +65,7 @@ export class MostLikedComponent implements OnInit {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {

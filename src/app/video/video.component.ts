@@ -71,7 +71,7 @@ export class VideoComponent implements OnInit {
     const token = this.cookieService.get('refreshToken');
   
     try {
-      const response = await axios.get(`http://localhost:8085/video/${this.videoName}`, {
+      const response = await axios.get(`http://nikstep.com.ua:8085/video/${this.videoName}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Accept': '*/*',
@@ -105,7 +105,7 @@ export class VideoComponent implements OnInit {
     };
 
     // Make Axios GET request to fetch recommended videos
-    axios.get(`http://localhost:8085/home/sort?videoCategoryId=${category}`, { headers })
+    axios.get(`http://nikstep.com.ua:8085/home/sort?videoCategoryId=${category}`, { headers })
         .then(response => {
             // Handle successful response
             this.recommendedVideos = response.data.filter((video: any) => video.id !== this.video.id);
@@ -129,7 +129,7 @@ export class VideoComponent implements OnInit {
   //get like and dislike
   async getCountDislike(token: string): Promise<number> {
     try {
-      const response = await axios.get(`http://localhost:8085/grade/countdislike`, {
+      const response = await axios.get(`http://nikstep.com.ua:8085/grade/countdislike`, {
         params: { videoId: this.video.id },
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -150,7 +150,7 @@ export class VideoComponent implements OnInit {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {
@@ -181,7 +181,7 @@ export class VideoComponent implements OnInit {
 
   async getCountLike(token: string): Promise<number> {
     try {
-      const response = await axios.get(`http://localhost:8085/grade/countlike`, {
+      const response = await axios.get(`http://nikstep.com.ua:8085/grade/countlike`, {
         params: { videoId: this.video.id },
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -202,7 +202,7 @@ export class VideoComponent implements OnInit {
     const token = this.cookieService.get('refreshToken');
   
     this.isButtonDisabled = true;
-    axios.get('http://localhost:8085/grade/like', {
+    axios.get('http://nikstep.com.ua:8085/grade/like', {
       params: { grade_id: gradeId, video_id: videoId },
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -240,7 +240,7 @@ export class VideoComponent implements OnInit {
     // this.SubscribeBtn.ActiveBtn = true;
     this.SubscribeBtn.Disabled = true;
     
-    axios.post('http://localhost:8085/subs/add-sub', formData, {
+    axios.post('http://nikstep.com.ua:8085/subs/add-sub', formData, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
@@ -263,7 +263,7 @@ export class VideoComponent implements OnInit {
     params.set('videoId', this.video.id);
   
     axios
-      .get('http://localhost:8085/comment/all', {
+      .get('http://nikstep.com.ua:8085/comment/all', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Accept': '*/*',
@@ -297,7 +297,7 @@ export class VideoComponent implements OnInit {
     formData.append('video_id', this.video.id);
 
     // Make an Axios POST request (replace 'your/comment/endpoint' with your actual API endpoint)
-    axios.post('http://localhost:8085/comment/add-comment', formData, {
+    axios.post('http://nikstep.com.ua:8085/comment/add-comment', formData, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Accept': '*/*',
@@ -344,7 +344,7 @@ export class VideoComponent implements OnInit {
   async fetchUserPlaylists() {
     const token = this.cookieService.get('refreshToken');
     try {
-      const response = await axios.get('http://localhost:8085/playlist/user-playlists', {
+      const response = await axios.get('http://nikstep.com.ua:8085/playlist/user-playlists', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -368,7 +368,7 @@ export class VideoComponent implements OnInit {
     formData.append('accessStatus', '1'); // Leaving accessStatus to 1 by default
   
     try {
-      const response = await axios.post('http://localhost:8085/playlist/create-playlist', formData, {
+      const response = await axios.post('http://nikstep.com.ua:8085/playlist/create-playlist', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'
@@ -388,7 +388,7 @@ export class VideoComponent implements OnInit {
     formData.append('videoId', this.video.id); // Leave videoId empty
 
     try {
-      axios.post('http://localhost:8085/list_video/add-video-playlist', formData, {
+      axios.post('http://nikstep.com.ua:8085/list_video/add-video-playlist', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

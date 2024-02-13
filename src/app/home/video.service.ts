@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class VideoService {
-  private apiUrl = 'http://localhost:8085/video/all';
+  private apiUrl = 'http://nikstep.com.ua:8085/video/all';
 
   constructor(private http: HttpClient) {}
 

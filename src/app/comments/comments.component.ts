@@ -23,7 +23,7 @@ export class CommentsComponent implements OnInit {
   }
 
   addComment() {
-    const apiUrl = 'http://localhost:8085/comment/add-comment';
+    const apiUrl = 'http://nikstep.com.ua:8085/comment/add-comment';
     const headers = {
       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMUBtYWlsLmNvbSIsImlhdCI6MTcwNjEyMzE3NiwiZXhwIjoxNzA2MjA5NTc2fQ.yIT9dMniXGb4SEtkRhEE1kVtVpVJ0re4udBpT0Er3b4',
       'Accept': '*/*',

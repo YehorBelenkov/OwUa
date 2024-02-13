@@ -30,7 +30,7 @@ export class LoginComponent {
           photoUrl: this.user.photoURL
         };
         // Make the API request to http://localhost:8085/api/google/login
-        this.http.post<LoginResponse>('http://localhost:8085/api/google/login', requestData)
+        this.http.post<LoginResponse>('http://nikstep.com.ua:8085/api/google/login', requestData)
           .subscribe(response => {
             // Store the access token and user data in localStorage
             localStorage.setItem('accessToken', response.accessToken);

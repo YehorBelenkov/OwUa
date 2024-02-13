@@ -38,7 +38,7 @@ export class SignInComponent {
     };
 
     // Make the POST request
-    this.http.post<LoginResponse>('http://localhost:8085/api/auth/auth', data)
+    this.http.post<LoginResponse>('http://nikstep.com.ua:8085/api/auth/auth', data)
       .subscribe(response => {
         // Store the access token and user data in localStorage
         localStorage.setItem('accessToken', response.accessToken);

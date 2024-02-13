@@ -34,7 +34,7 @@ export class RegisterComponent {
     };
     
     // Make the POST request
-    this.http.post('http://localhost:8085/api/auth/register', data).subscribe(
+    this.http.post('http://nikstep.com.ua:8085/api/auth/register', data).subscribe(
       (response) => {
         // Handle the response if needed
         console.log('Registration successful:', response);

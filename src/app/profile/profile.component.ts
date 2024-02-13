@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
       bannerFormData.append('photoUrl', this.bannerFile);
   
       // Send Axios POST request to update banner
-      axios.post('http://localhost:8085/user/update-banner', bannerFormData, {
+      axios.post('http://nikstep.com.ua:8085/user/update-banner', bannerFormData, {
         headers: {
           Authorization: `Bearer ${bearerToken}`
         }
@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
       avatarFormData.append('photoUrl', this.avatarFile);
   
       // Send Axios POST request to update avatar
-      axios.post('http://localhost:8085/user/update-image', avatarFormData, {
+      axios.post('http://nikstep.com.ua:8085/user/update-image', avatarFormData, {
         headers: {
           Authorization: `Bearer ${bearerToken}`
         }
@@ -121,7 +121,7 @@ export class ProfileComponent implements OnInit {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {

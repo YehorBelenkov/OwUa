@@ -64,7 +64,7 @@ export class UploadVideoComponent {
       'Authorization': 'Bearer ' + bearerToken
     };
 
-    axios.get('http://localhost:8085/category/all-category', { headers })
+    axios.get('http://nikstep.com.ua:8085/category/all-category', { headers })
       .then(response => {
         this.categories = response.data;
       })
@@ -79,7 +79,7 @@ export class UploadVideoComponent {
       'Authorization': 'Bearer ' + bearerToken
     };
 
-    axios.get('http://localhost:8085/access/all-status', { headers })
+    axios.get('http://nikstep.com.ua:8085/access/all-status', { headers })
       .then(response => {
         this.statuses = response.data;
       })
@@ -96,7 +96,7 @@ export class UploadVideoComponent {
   async onSubmit(videoForm: NgForm): Promise<void> {
     try {
       // Handle any additional logic here
-      const serverhost = "http://10.0.0.151:8085";
+      const serverhost = "http://nikstep.com.ua:8085";
       const formData = new FormData();
       formData.append('title', this.video.title); 
       formData.append('description', this.video.description);
@@ -124,7 +124,7 @@ export class UploadVideoComponent {
       };
   
       // Make the POST request
-      const response = await axios.post('http://localhost:8085/video/upload', formData, { headers });
+      const response = await axios.post('http://nikstep.com.ua:8085/video/upload', formData, { headers });
       console.log('Success', response.data);
       // Handle success
       
@@ -143,7 +143,7 @@ export class UploadVideoComponent {
     const bearerToken = this.cookieService.get('refreshToken');
   
     // Define the URL for the GET request
-    const url = 'http://localhost:8085/channels/channel-user';
+    const url = 'http://nikstep.com.ua:8085/channels/channel-user';
   
     // Define headers including the bearer token
     const headers = {

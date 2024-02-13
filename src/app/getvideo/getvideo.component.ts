@@ -18,7 +18,7 @@ export class GetvideoComponent implements OnInit {
   }
 
   fetchCategories() {
-    const apiUrl = 'http://localhost:8085/category/all-category';
+    const apiUrl = 'http://nikstep.com.ua:8085/category/all-category';
 
     // Making the GET request using Angular's HttpClient
     this.http.get(apiUrl)
@@ -35,7 +35,7 @@ export class GetvideoComponent implements OnInit {
 
   fetchCategoryById() {
     if (this.categoryId !== undefined) {
-      const apiUrl = `http://localhost:8085/category/${this.categoryId}`;
+      const apiUrl = `http://nikstep.com.ua:8085/category/${this.categoryId}`;
 
       // Making the GET request using Angular's HttpClient
       this.http.get(apiUrl)
