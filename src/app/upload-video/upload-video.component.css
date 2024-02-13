@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  gap: 3rem;
   overflow-x: hidden;
 }
 form {
@@ -53,8 +53,10 @@ form {
   } */
   .fill_info_container, .combobox_container{
     display: flex;
-    width: 100%;
+    width: 80%;
     justify-content: space-between;
+    align-items: center;
+    margin-left: 0rem;
   }
   .fill_info_container div{
     width: 25%;
@@ -85,8 +87,8 @@ form {
   }
   .combo_container{
     display: flex;
-    width: 80%;
-    margin: 0 auto;
+    width: 70%;
+    margin-left: 10vw;
   }
   .s_con{
     width: 100%;
@@ -95,11 +97,11 @@ form {
     justify-content: center;
   }
   .save_btn{
-    margin: 0 auto;
+    margin-left: 26vw;
   }
 
   .progress-bar-container {
-    width: 100%;
+    width: 81%;
     height: 20px;
     background-color: #f0f0f0;
     margin-top: 10px;
@@ -135,3 +137,172 @@ form {
     border-style: solid;
     border-color: transparent transparent #ffffff transparent;
   }
+  .listing_links{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.body_container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+    gap: 3vw;
+    background: linear-gradient(to bottom right, #040406 60%, #24234C);
+}
+.make_fixed{
+    width: 20vw;
+}
+.menu_container {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    height: 100vh;
+    background-color: #111222;
+    align-items: center;
+    transition-duration: 0.2s;
+    overflow-y: scroll; 
+  }
+  
+  .menu_container::-webkit-scrollbar {
+    width: 0.5rem; 
+  }
+  
+  .menu_container::-webkit-scrollbar-thumb {
+    background-color: transparent; 
+  }
+  
+  .menu_container::-webkit-scrollbar-track {
+    background-color: transparent; 
+  }
+.logo_closed_menu{
+    width: 10.5vw;
+    margin: 0 auto;
+    margin-top: 2vw;
+
+}
+.more_icons_container {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin-top: 2vw;
+    gap: 0.3vw;
+}
+.hidden_icon{
+    display: none;
+    display: flex;
+}
+.icon_container {
+    display: flex;
+    align-items: center; /* Center icons vertically */
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 12px;
+    transition-duration: 0.2s;
+    padding: 1rem;
+}
+.icon_container:hover{
+    background-color: #5A58C9;
+}
+.hidden_icon{
+    display: none;
+}
+.icon_text {
+    font-size: 1vw;
+    color: white;
+    margin-top: 4px;
+    display: none;
+    align-items: center; /* Center text vertically */
+}
+.icon {
+    width: 1.5vw;
+}
+.arrow_icon{
+    width: 0.4vw;
+}
+.additional_icons{
+    margin-left: 2rem;
+}
+.profile_img{
+    width: 3vw;
+    height: 3vw;
+    cursor: pointer;
+    border-radius: 50px;
+}
+  .user_credentials_h4, .user_credentials_p{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+  }
+  .user_credentials_h4{
+    font-size: 18px;
+  }
+  .user_credentials_p{
+    font-size: 14px;
+    color: gray;
+  }
+  .profile_container_btn{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 1vw;
+    align-items: center;
+    gap: 0.5vw;
+  }
+
+  .content_container {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    height: 100vh;
+    align-items: center;
+}
+.input_container {
+    position: relative;
+    width: 50vw;
+    margin-top: 1rem;
+}
+.search_input { 
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #5A58C9;
+    border-radius: 20px;
+    background-color: transparent;
+    color: white;
+}
+.search_input::placeholder {
+    font-weight: bold; 
+  }
+  .search_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -1rem; 
+}
+.like_list_container {
+    display: flex;
+    width: 65vw;
+    margin-top: 3rem;
+    flex: 1;
+}
+
+.interaction_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, #100F1C, #181731);
+    gap: 1rem;
+}
+.upload_container{
+  width: 73vw;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+.h_1{
+  font-size: 32px;
+  margin: 0 auto;
+}
