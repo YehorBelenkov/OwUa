@@ -19,9 +19,9 @@
               </div>
               <!-- Additional icons for Categories -->
               <div *ngIf="expandedIcons.get('Categories')" class="additional_icons">
-                <div class="icon_container" (click)="navigateToRoute('/Subscribed')">
+                <div class="icon_container" (click)="navigateToRoute('/Chanel')">
                     <img class="icon" src="assets/icons/profile_icon.png" alt="Videos Icon"/>
-                    <span>Підписки</span>
+                    <span>Ваш канал</span>
                 </div>
               </div>
             
@@ -47,7 +47,7 @@
                 <img class="icon " src="assets/icons/like_icon.png" alt="Menu Icon"/>
                 <span class="">Уподобані</span>
             </div>
-            <div class="icon_container">
+            <div class="icon_container" (click)="navigateToRoute('/Subscriptions')">
                 <img class="icon " src="assets/icons/share_icon.png" alt="Menu Icon"/>
                 <span class="">Керування підписками</span>
             </div>

@@ -159,8 +159,12 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 21vw;
-    height: 14rem;
+    height: auto;
     cursor: pointer;
+  }
+  .video_v{
+    width: 100%;
+    height: 10vw;
   }
   
   .video_img{

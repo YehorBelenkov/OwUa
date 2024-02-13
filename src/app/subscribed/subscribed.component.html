@@ -8,7 +8,7 @@
                 <img class="icon" src="assets/icons/home_icon.png" alt="Home Icon"/> 
                 <span class="">Головна </span>
             </div>
-            <div class="icon_container" (click)="navigateToRoute('/Subscriptions')">
+            <div class="icon_container" (click)="navigateToRoute('/Subscribed')">
                 <img class="icon" src="assets/icons/videos_icon.png" alt="Videos Icon"/>
                 <span class="">Підписки</span>
             </div>
@@ -19,10 +19,10 @@
                 </span>
               </div>
               <!-- Additional icons for Categories -->
-              <div *ngIf="expandedIcons.get('Categories')" class="additional_icons">
+              <div *ngIf="expandedIcons.get('Categories')" class="additional_icons" (click)="navigateToRoute('/Chanel')">
                 <div class="icon_container" (click)="navigateToRoute('/Subscribed')">
                     <img class="icon" src="assets/icons/profile_icon.png" alt="Videos Icon"/>
-                    <span>Підписки</span>
+                    <span>Ваш канал</span>
                 </div>
               </div>
             
@@ -48,7 +48,7 @@
                 <img class="icon " src="assets/icons/like_icon.png" alt="Menu Icon"/>
                 <span class="">Уподобані</span>
             </div>
-            <div class="icon_container">
+            <div class="icon_container" (click)="navigateToRoute('/Subscriptions')">
                 <img class="icon " src="assets/icons/share_icon.png" alt="Menu Icon"/>
                 <span class="">Керування підписками</span>
             </div>
@@ -102,7 +102,7 @@
         <div [attr.data-content-type]="video.contentType" class="video" >
           <ng-container *ngIf="video.path">
             <div class="video-container">
-              <video class="video" #myVideo [src]="video.path" muted (click)="navigateToVideoDetails(video)"></video>
+              <video class="video_v" #myVideo [src]="video.path" muted (click)="navigateToVideoDetails(video)"></video>
             </div>
           </ng-container>
           <div class="creator_content_container">
