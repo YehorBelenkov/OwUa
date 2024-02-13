@@ -23,10 +23,6 @@
                         <img class="icon" src="assets/icons/profile_icon.png" alt="Videos Icon"/>
                         <span>Підписки</span>
                     </div>
-                    <div class="icon_container">
-                        <img class="icon" src="assets/icons/history_icon.png" alt="Videos Icon"/>
-                        <span>Історія перегляду</span>
-                    </div>
                   </div>
                 
                   <!-- Menu Icon with arrow -->
@@ -55,7 +51,7 @@
                     <img class="icon " src="assets/icons/share_icon.png" alt="Menu Icon"/>
                     <span class="">Керування підписками</span>
                 </div>
-                <div class="icon_container">
+                <div class="icon_container" (click)="navigateToRoute('/Settings')">
                     <img class="icon " src="assets/icons/settings_icon.png" alt="Menu Icon"/>
                     <span class="">Налаштування</span>
                 </div>
@@ -68,15 +64,15 @@
                   </ng-container>
                   
                   <ng-template #usePfp>
-                    <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar">
+                    <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
                   </ng-template>
                   
                   <ng-template #turntoByte>
-                    <img class="profile_img" [src]="user.photoUrl" alt="User Avatar">
+                    <img class="profile_img" [src]="user.photoUrl" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
                   </ng-template>
                 <!-- If photoUrl is null, display alternative image -->
                 <ng-template #noPhoto>
-                  <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
+                  <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" (click)="navigateToRoute('/Chanel')"/>
                 </ng-template>
               
                 <div class="">

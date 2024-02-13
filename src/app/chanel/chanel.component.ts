@@ -159,9 +159,6 @@ export class ChanelComponent {
     // Change logo image source and set its width to 10vw
     this.menuLogoSrc = 'assets/images/logo.png';
   }
-  navigateHome() {
-    this.router.navigate(['/']);
-  }
   navigateToVideoDetails(video: any): void {
     this.router.navigate(['/video', video.id]);
   }
@@ -170,5 +167,8 @@ export class ChanelComponent {
   }
   redirectToUpload() {
     this.router.navigate(['/Upload']);
+  }
+  navigateToRoute(routePath: string) {
+    this.router.navigate([routePath]);
   }
 }

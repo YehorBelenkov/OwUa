@@ -151,9 +151,6 @@ export class PlaylistComponent implements OnInit {
         this.router.navigate(['/video', videoId]);
     }
 }
-  navigateHome() {
-    this.router.navigate(['/']);
-  }
   toggleIcon(iconName: string): void {
     this.expandedIcons.set(iconName, !this.expandedIcons.get(iconName));
     if(iconName == "Menu"){
@@ -165,5 +162,8 @@ export class PlaylistComponent implements OnInit {
         replaceUrl: true // Set replaceUrl to true to replace the current URL
     };
     this.router.navigate(['/playlist', playlistId], navigationExtras);
+  }
+  navigateToRoute(routePath: string) {
+    this.router.navigate([routePath]);
   }
 }

@@ -162,8 +162,6 @@ export class HomeComponent implements OnInit {
     if (response.data.length > 0) {
       // Access the avatarBytes of the first user in the array
       this.user.pfp = response.data[0].avatarBytes;
-      console.log("USER BYTES");
-      console.log(this.user.pfp);
       
     } else {
       console.error('No user data found.');
@@ -241,6 +239,7 @@ export class HomeComponent implements OnInit {
 filterVideos() {
   if (this.selectedCategory) {
     this.filteredVideos = this.videos.filter(video => video.contentType == this.selectedCategory);
+    console.log(this.filteredVideos);
   } else {
     this.filteredVideos = this.videos;
   }

@@ -86,15 +86,15 @@
                   </ng-container>
                   
                   <ng-template #usePfp>
-                    <img class="creator_profile" [src]="user.pfp | safe" alt="User Avatar">
+                    <img class="creator_profile" [src]="user.pfp | safe" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
                   </ng-template>
                   
                   <ng-template #turntoByte>
-                    <img class="creator_profile" [src]="user.photoUrl" alt="User Avatar">
+                    <img class="creator_profile" [src]="user.photoUrl" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
                   </ng-template>
                   <!-- If photoUrl is null, display alternative image -->
                   <ng-template #noPhoto>
-                    <img class="creator_profile" [src]="user ? (user.pfp | safe) : 'assets/images/unregisteredImg.png'" alt="Creator Logo"/>
+                    <img class="creator_profile" [src]="user ? (user.pfp | safe) : 'assets/images/unregisteredImg.png'" alt="Creator Logo" (click)="navigateToRoute('/Chanel')"/>
                   </ng-template>
                 <div class="leave_a_comment_container">
                     <input class="comment_input" type="text" placeholder="Введіть коментар" [(ngModel)]="commentText"> 

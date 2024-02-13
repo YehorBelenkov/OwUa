@@ -58,19 +58,18 @@
             </div>
             <!-- If user exists, display user information -->
             <div *ngIf="user; else noUser" class="profile_container_btn">
-                <!-- Check if photoUrl is not null -->
                 <ng-container *ngIf="user">
-                  <ng-container *ngIf="user.pfp; then usePfp else turntoByte">
+                    <ng-container *ngIf="user.pfp; then usePfp else turntoByte" (click)="navigateToRoute('/Chanel')">
+                    </ng-container>
                   </ng-container>
-                </ng-container>
-                
-                <ng-template #usePfp>
-                  <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
-                </ng-template>
-                
-                <ng-template #turntoByte>
-                  <img class="profile_img" [src]="user.photoUrl" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
-                </ng-template>
+                  
+                  <ng-template #usePfp>
+                    <img class="profile_img" [src]="user.pfp | safe" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
+                  </ng-template>
+                  
+                  <ng-template #turntoByte>
+                    <img class="profile_img" [src]="user.photoUrl" alt="User Avatar" (click)="navigateToRoute('/Chanel')">
+                  </ng-template>
                 <!-- If photoUrl is null, display alternative image -->
                 <ng-template #noPhoto>
                   <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found" />
@@ -80,10 +79,10 @@
                   <h4 class="user_credentials_h4">{{ user.email }}</h4>
                   <p class="user_credentials_p">&#64;{{ user.displayName }}</p>
                 </div>
-            </div>
-  
-  <!-- Else, display a message or alternative content -->
-  <ng-template #noUser>
+              </div>
+    
+    <!-- Else, display a message or alternative content -->
+    <ng-template #noUser>
     <div class="profile_container_btn">
       <img class="profile_img" src="assets/images/unregisteredImg.png" alt="No User Found">
       <div class="">
@@ -91,21 +90,35 @@
         <a href="/Login">Login</a>
       </div>
     </div>
-  </ng-template>
+    </ng-template>
         </div>
     </div>
-    <div class="sub_container">
-      <div class="input_container">
-        <input class="search_input" placeholder="Введіть запит" type="text">
-        <img class="search_icon" src="assets/icons/search_icon.png" alt="Search icon"/>
-    </div>
-    <div class="all_subs_con">
-      <div class="sub_content" *ngFor="let user of subedUsers">
-        <img class="sub_img" [src]="user.photoUrl.startsWith('http') ? user.photoUrl : (user.photoByte | safe)" alt="No User Found">
-        <h1 class="crt_sub_h1">{{ user.userName }}</h1>
-        <button class="unfollow_btn" (click)="unsubscribeUser(user.id)">відписатися</button>
+    <div class="container_settings">
+        <h1 class="h_1">Налаштування</h1>
+        <div class="inputs_container">
+          <div class="inp_el">
+            <h1>ПІП</h1>
+            <input type="text" [(ngModel)]="name">
+          </div>
+          <div class="inp_el">
+            <h1>Email</h1>
+            <input type="text" [(ngModel)]="email">
+          </div>
+          <div class="inp_el">
+            <h1>Пароль</h1>
+            <input type="password" [(ngModel)]="password">
+          </div>
+        </div>
+        <div class="inputs_container">
+          <div class="inp_el">
+            <h1>Банер</h1>
+            <input type="file" accept="image/*" (change)="onBannerFileSelected($event)">
+          </div>
+          <div class="inp_el">
+            <h1>Фото профілю</h1>
+            <input type="file" accept="image/*" (change)="onAvatarFileSelected($event)">
+          </div>
+        </div>
+        <button class="save_btn" (click)="onSave()">Зберегти</button>
       </div>
-    </div>
-    </div>
-    
-  </div>
+</div>

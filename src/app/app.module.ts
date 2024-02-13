@@ -33,6 +33,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
+import { ProfileComponent } from './profile/profile.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SafePipe } from './safe.pipe';
@@ -60,7 +61,8 @@ import { AuthService } from './auth.service';
     SubscribedComponent,
     SafePipe,
     VideoPipe,
-    PlaylistComponent
+    PlaylistComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

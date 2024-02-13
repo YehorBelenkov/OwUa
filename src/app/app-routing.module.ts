@@ -21,6 +21,7 @@ import { ChanelComponent } from './chanel/chanel.component';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { SubscribedComponent } from './subscribed/subscribed.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: 'Main', component: MainPageComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'Chanel', component: ChanelComponent },
   { path: 'Subscriptions', component: SubscriptionsComponent },
   { path: 'Subscribed', component: SubscribedComponent },
+  { path: 'Settings', component: ProfileComponent },
   { path: 'playlist/:id', component: PlaylistComponent }
 
 ];
